@@ -37,12 +37,15 @@ const About = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100
       }
     }
   };
@@ -62,7 +65,13 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               About <span className="bg-gradient-primary bg-clip-text text-transparent">Me</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-primary mx-auto"></div>
+            <motion.div
+              className="w-24 h-1 bg-gradient-primary mx-auto"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -75,24 +84,42 @@ const About = () => {
               className="space-y-6"
             >
               <div className="prose prose-lg">
-                <p className="text-foreground-secondary leading-relaxed">
+                <motion.p
+                  className="text-foreground-secondary leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
                   I'm a <strong className="text-foreground">skilled Software Developer</strong> with extensive expertise in
                   <strong className="text-primary"> React Native, JavaScript, TypeScript, Redux, and Firebase</strong>.
                   My passion lies in creating seamless cross-platform solutions that deliver exceptional user experiences.
-                </p>
+                </motion.p>
 
-                <p className="text-foreground-secondary leading-relaxed">
+                <motion.p
+                  className="text-foreground-secondary leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                >
                   I specialize in building mobile applications with <strong className="text-foreground">real-time functionality,
                     responsive UI design, and smooth user experience</strong>. My technical strengths include
                   <strong className="text-accent"> API integration, secure authentication, performance optimization,
                     and comprehensive debugging</strong>.
-                </p>
+                </motion.p>
 
-                <p className="text-foreground-secondary leading-relaxed">
+                <motion.p
+                  className="text-foreground-secondary leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                >
                   With a focus on <strong className="text-foreground">modern development practices</strong> and
                   <strong className="text-primary"> cutting-edge technologies</strong>, I deliver high-quality mobile
                   solutions that meet business objectives and exceed user expectations.
-                </p>
+                </motion.p>
               </div>
             </motion.div>
 
@@ -106,17 +133,38 @@ const About = () => {
             >
               {highlights.map((item, index) => (
                 <motion.div key={index} variants={itemVariants}>
-                  <Card
-                    className="p-6 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30 hover:shadow-lg group"
+                  <motion.div
+                    whileHover={{
+                      y: -5,
+                      rotateY: 5,
+                      scale: 1.02
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <div className="flex flex-col items-center text-center space-y-3">
-                      <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                        {item.icon}
+                    <Card
+                      className="p-6 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 group h-full"
+                    >
+                      <div className="flex flex-col items-center text-center space-y-3">
+                        <motion.div
+                          className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                          whileHover={{
+                            rotate: [0, -10, 10, -10, 0],
+                            scale: 1.1
+                          }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {item.icon}
+                        </motion.div>
+                        <motion.h3
+                          className="font-semibold text-foreground"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {item.title}
+                        </motion.h3>
+                        <p className="text-sm text-foreground-muted leading-relaxed">{item.description}</p>
                       </div>
-                      <h3 className="font-semibold text-foreground">{item.title}</h3>
-                      <p className="text-sm text-foreground-muted leading-relaxed">{item.description}</p>
-                    </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 </motion.div>
               ))}
             </motion.div>

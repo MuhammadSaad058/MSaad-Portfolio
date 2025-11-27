@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun, Home, User, Code, Briefcase, FolderGit2, GraduationCap, Mail, Github, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { NavLink } from "react-router-dom";
 import MagneticButton from "./MagneticButton";
 
 const Sidebar = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     if (isDark) {
@@ -19,14 +19,23 @@ const Sidebar = () => {
     }
   }, [isDark]);
 
+  useEffect(() => {
+    const handleActiveSectionChange = (event: any) => {
+      setActiveSection(event.detail);
+    };
+
+    window.addEventListener('activeSectionChange', handleActiveSectionChange);
+    return () => window.removeEventListener('activeSectionChange', handleActiveSectionChange);
+  }, []);
+
   const navItems = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "About", href: "/about", icon: User },
-    { label: "Skills", href: "/skills", icon: Code },
-    { label: "Experience", href: "/experience", icon: Briefcase },
-    { label: "Projects", href: "/projects", icon: FolderGit2 },
-    { label: "Education", href: "/education", icon: GraduationCap },
-    { label: "Contact", href: "/contact", icon: Mail },
+    { label: "Home", href: "home", icon: Home },
+    { label: "About", href: "about", icon: User },
+    { label: "Skills", href: "skills", icon: Code },
+    { label: "Experience", href: "experience", icon: Briefcase },
+    { label: "Projects", href: "projects", icon: FolderGit2 },
+    { label: "Education", href: "education", icon: GraduationCap },
+    { label: "Contact", href: "contact", icon: Mail },
   ];
 
   const socialLinks = [
@@ -34,6 +43,14 @@ const Sidebar = () => {
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 bg-surface/50 backdrop-blur-xl border-r border-border p-6 z-50">
@@ -58,33 +75,31 @@ const Sidebar = () => {
       <nav className="flex-1 space-y-2">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isActive = activeSection === item.href;
 
           return (
-            <NavLink
+            <a
               key={item.label}
-              to={item.href}
-              className={({ isActive }) => cn(
+              href={`#${item.href}`}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={cn(
                 "w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group relative overflow-hidden",
                 isActive
                   ? "bg-primary/10 text-primary"
                   : "text-foreground-secondary hover:text-foreground hover:bg-surface-elevated"
               )}
             >
-              {({ isActive }) => (
-                <>
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-primary/10 rounded-lg"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <Icon className={cn("w-5 h-5 relative z-10", isActive ? "text-primary" : "group-hover:text-primary transition-colors")} />
-                  <span className="font-medium relative z-10">{item.label}</span>
-                </>
+              {isActive && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-primary/10 rounded-lg"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
               )}
-            </NavLink>
+              <Icon className={cn("w-5 h-5 relative z-10", isActive ? "text-primary" : "group-hover:text-primary transition-colors")} />
+              <span className="font-medium relative z-10">{item.label}</span>
+            </a>
           );
         })}
       </nav>

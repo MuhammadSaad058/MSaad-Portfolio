@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -25,15 +25,33 @@ const Navbar = () => {
     }
   }, [isDark]);
 
+  useEffect(() => {
+    const handleActiveSectionChange = (event: any) => {
+      setActiveSection(event.detail);
+    };
+
+    window.addEventListener('activeSectionChange', handleActiveSectionChange);
+    return () => window.removeEventListener('activeSectionChange', handleActiveSectionChange);
+  }, []);
+
   const navItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Skills", href: "/skills" },
-    { label: "Experience", href: "/experience" },
-    { label: "Projects", href: "/projects" },
-    { label: "Education", href: "/education" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home", href: "home" },
+    { label: "About", href: "about" },
+    { label: "Skills", href: "skills" },
+    { label: "Experience", href: "experience" },
+    { label: "Projects", href: "projects" },
+    { label: "Education", href: "education" },
+    { label: "Contact", href: "contact" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <nav
@@ -67,18 +85,19 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <NavLink
+                <a
                   key={item.label}
-                  to={item.href}
-                  className={({ isActive }) => cn(
+                  href={`#${item.href}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
                     "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200",
-                    isActive
+                    activeSection === item.href
                       ? "text-primary bg-surface-elevated"
                       : "text-foreground-secondary hover:text-primary hover:bg-surface-elevated"
                   )}
                 >
                   {item.label}
-                </NavLink>
+                </a>
               ))}
             </div>
           </div>
@@ -121,19 +140,19 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-surface/95 backdrop-blur-md rounded-lg mt-2">
               {navItems.map((item) => (
-                <NavLink
+                <a
                   key={item.label}
-                  to={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={({ isActive }) => cn(
+                  href={`#${item.href}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
                     "block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200",
-                    isActive
+                    activeSection === item.href
                       ? "text-primary bg-surface-elevated"
                       : "text-foreground-secondary hover:text-primary hover:bg-surface-elevated"
                   )}
                 >
                   {item.label}
-                </NavLink>
+                </a>
               ))}
             </div>
           </div>
