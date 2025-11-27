@@ -2,8 +2,24 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Calendar, Building } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const Experience = () => {
+  // Mobile detection
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const experiences = [
     {
       title: "React Native Developer",
@@ -41,37 +57,38 @@ const Experience = () => {
     }
   ];
 
+  // Responsive animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
+        staggerChildren: isMobile ? 0.15 : 0.3
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: isMobile ? -20 : -50 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.6,
-        type: "spring",
-        stiffness: 100
+        duration: isMobile ? 0.4 : 0.6,
+        ease: [0.33, 1, 0.68, 1] as any
       }
     }
   };
 
   const achievementVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: isMobile ? -10 : -20 },
     visible: (index: number) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: index * 0.1,
-        duration: 0.4
+        delay: isMobile ? index * 0.05 : index * 0.1,
+        duration: 0.3,
+        ease: [0.33, 1, 0.68, 1] as any
       }
     })
   };
@@ -109,15 +126,16 @@ const Experience = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: isMobile ? 0.2 : 0.3 }}
           >
             {/* Timeline Line */}
             <motion.div
               className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"
+              style={{ willChange: 'height' }}
               initial={{ height: 0 }}
               whileInView={{ height: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: isMobile ? 1 : 1.5, ease: "easeOut" }}
             />
 
             {experiences.map((exp, index) => (
@@ -129,18 +147,20 @@ const Experience = () => {
                 {/* Timeline Dot */}
                 <motion.div
                   className="absolute left-0 md:left-8 top-8 w-4 h-4 -ml-2 rounded-full bg-primary shadow-glow z-10"
+                  style={{ willChange: 'transform' }}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                  whileHover={{ scale: 1.5 }}
+                  transition={{ delay: isMobile ? 0.15 : 0.3, duration: 0.3, ease: "easeOut" }}
+                  whileHover={!isTouchDevice ? { scale: 1.5 } : {}}
                 />
 
                 <motion.div
-                  whileHover={{
+                  style={{ willChange: 'transform' }}
+                  whileHover={!isTouchDevice ? {
                     y: -5,
                     boxShadow: "0 20px 50px rgba(139, 92, 246, 0.2)"
-                  }}
+                  } : {}}
                   transition={{ duration: 0.3 }}
                   className="ml-0 md:ml-20"
                 >
@@ -162,7 +182,7 @@ const Experience = () => {
                           </motion.h3>
                           <motion.div
                             className="flex items-center gap-2 text-primary"
-                            whileHover={{ x: 5 }}
+                            whileHover={!isTouchDevice ? { x: 5 } : {}}
                             transition={{ duration: 0.2 }}
                           >
                             <Building className="h-4 w-4" />
@@ -182,7 +202,7 @@ const Experience = () => {
                         </div>
 
                         <motion.div
-                          whileHover={{ scale: 1.05 }}
+                          whileHover={!isTouchDevice ? { scale: 1.05 } : {}}
                           transition={{ duration: 0.2 }}
                         >
                           <Badge
@@ -208,16 +228,17 @@ const Experience = () => {
                               <motion.li
                                 key={achievementIndex}
                                 className="flex items-start gap-3 text-foreground-secondary"
+                                style={{ willChange: 'transform, opacity' }}
                                 custom={achievementIndex}
                                 variants={achievementVariants}
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true }}
-                                whileHover={{ x: 5 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                whileHover={!isTouchDevice ? { x: 5 } : {}}
                               >
                                 <motion.div
                                   className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
-                                  whileHover={{ scale: 2 }}
+                                  whileHover={!isTouchDevice ? { scale: 2 } : {}}
                                 />
                                 <span>{achievement}</span>
                               </motion.li>
@@ -232,15 +253,16 @@ const Experience = () => {
                             {exp.technologies.map((tech, techIndex) => (
                               <motion.div
                                 key={techIndex}
+                                style={{ willChange: 'transform, opacity' }}
                                 initial={{ opacity: 0, scale: 0 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: techIndex * 0.05 }}
-                                whileHover={{
+                                transition={{ delay: isMobile ? techIndex * 0.03 : techIndex * 0.05, ease: "easeOut" }}
+                                whileHover={!isTouchDevice ? {
                                   scale: 1.1,
                                   y: -2,
                                   transition: { duration: 0.2 }
-                                }}
+                                } : {}}
                               >
                                 <Badge
                                   variant="outline"
@@ -269,7 +291,7 @@ const Experience = () => {
             transition={{ delay: 0.5 }}
           >
             <motion.div
-              whileHover={{ scale: 1.02 }}
+              whileHover={!isTouchDevice ? { scale: 1.02 } : {}}
             >
               <Card className="p-8 bg-gradient-surface border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-4">
