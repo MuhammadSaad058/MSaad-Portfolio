@@ -198,9 +198,9 @@ const Hero = () => {
             className="flex flex-wrap justify-center gap-6 mb-10 text-foreground-muted"
           >
             {[
-              { icon: MapPin, text: "Lahore, Pakistan" },
+              { icon: MapPin, text: "Islamabad, Pakistan" },
               { icon: Mail, text: "ms0601572@gmail.com" },
-              { icon: Phone, text: "+92 309 4119360" }
+              { icon: Phone, text: "+92 3346664252" }
             ].map((item, index) => (
               <motion.div
                 key={index}
