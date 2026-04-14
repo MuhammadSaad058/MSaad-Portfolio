@@ -23,101 +23,62 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "AR-Based E-Commerce App",
-      description:
-        "Revolutionary shopping experience with augmented reality technology, allowing users to visualize products in 3D before purchase.",
+      title: "SavorConnect - Online Food Delivery App",
+      description: "An intuitive Online Food Delivery App designed for seamless ordering, order customization, and smooth checkout.",
       icon: <ShoppingCart className="h-6 w-6" />,
       features: [
-        "3D Product Visualization",
-        "AR Product Preview",
-        "Seamless Shopping Experience",
-        "Real-time Product Interaction",
+        "Used React Native for a cross-platform mobile experience with optimized performance.",
+        "Designed an intuitive UI/UX for easy navigation, order customization, and smooth checkout.",
+        "Integrated Stripe for secure online payments, supporting credit/debit cards and digital wallets.",
+        "Integrated Google Maps API for location-based restaurant discovery and real-time order tracking."
       ],
-      technologies: ["React Native", "AR Kit", "3D Modeling", "TypeScript"],
-      gradient: "from-purple-500 to-pink-500",
+      technologies: ["React Native", "Stripe", "Google Maps API", "TypeScript"],
+      gradient: "from-orange-500 to-red-500",
       category: "E-Commerce",
+      link: "https://apps.apple.com/us/app/savorconnect/id6736651275"
     },
     {
-      title: "BuyNothings Marketplace",
-      description:
-        "Sustainable marketplace for buying and selling pre-owned items with integrated chat system for seamless communication.",
+      title: "BuyNothings - Used Products Marketplace App",
+      description: "A buy-and-sell platform for users to list and purchase pre-owned items, facilitating seamless interactions.",
       icon: <Smartphone className="h-6 w-6" />,
       features: [
-        "Buy & Sell Pre-owned Items",
-        "Real-time Chat/Messaging",
-        "User Profile Management",
-        "Secure Transaction System",
+        "Developed a buy-and-sell platform for users to list and purchase pre-owned items.",
+        "Implemented image-based product posting, allowing users to upload pictures and add descriptions.",
+        "Designed a chat/messaging system to facilitate direct communication between buyers and sellers."
       ],
       technologies: ["React Native", "Firebase", "Real-time Chat", "Redux"],
       gradient: "from-green-500 to-teal-500",
       category: "Marketplace",
+      link: "https://apps.apple.com/pk/app/buy-nothings/id6755946101"
     },
     {
       title: "Activity Maps",
-      description:
-        "Comprehensive events and places discovery app with advanced mapping, secure payments, and biometric authentication.",
+      description: "A comprehensive events and places discovery app where contributors can add places and create events, and users can make reservations on a map.",
       icon: <Map className="h-6 w-6" />,
       features: [
-        "Google Maps Integration",
-        "Event Discovery",
-        "Payment Gateway Integration",
-        "Biometric Authentication",
-        "Push Notifications",
+        "Developed a cross-platform mobile app where contributors can add places (e.g., cafes, restaurants) and create events, while users can view them on a map and make reservations.",
+        "Integrated features like Google Maps API, push notifications, biometric authentication, barcode scanning, and secure payment with subscription handling.",
+        "Optimized app performance through Redux-based state management, efficient RESTful API communication, code optimization, and bug resolution."
       ],
-      technologies: [
-        "React Native",
-        "Google Maps API",
-        "Firebase",
-        "Biometric Auth",
-        "Payment Integration",
-      ],
+      technologies: ["React Native", "Google Maps API", "Biometric Auth", "Payment Integration", "Redux"],
       gradient: "from-blue-500 to-cyan-500",
       category: "Location-based",
+      link: "https://play.google.com/store/apps/details?id=com.activitymaps"
     },
     {
       title: "VCROW - School Management",
-      description:
-        "Dual-portal application connecting schools and parents with comprehensive analytics, reporting, and payment systems.",
+      description: "Dual-portal application connecting schools and parents with comprehensive analytics, reporting, and payment systems using Firebase.",
       icon: <GraduationCap className="h-6 w-6" />,
       features: [
-        "Dual Portal (School/Parent)",
-        "Firebase Integration",
-        "Payment System",
-        "Analytics & Reporting",
-        "Real-time Communication",
+        "Developed a dual-portal app for parents and schools using Firebase, allowing device management, app restrictions, and push notifications.",
+        "Implemented question management and payment system for parents to purchase question sets; questions appear for kids during usage.",
+        "Created analytics and reporting features showing kids' performance through interactive graphs on parent and school portals."
       ],
-      technologies: [
-        "React Native",
-        "Firebase",
-        "Analytics",
-        "Payment Gateway",
-        "Redux Toolkit",
-      ],
+      technologies: ["React Native", "Firebase", "Analytics", "Payment Gateway", "Redux Toolkit"],
       gradient: "from-indigo-500 to-purple-500",
       category: "Education",
-    },
-    {
-      title: "Bulky - Logistics Platform",
-      description:
-        "Multi-actor logistics application with smart booking system, rider assignment, and secure payment integration.",
-      icon: <Truck className="h-6 w-6" />,
-      features: [
-        "Multi-actor System",
-        "Smart Booking System",
-        "Rider Assignment",
-        "Secure Payment Integration",
-        "Real-time Tracking",
-      ],
-      technologies: [
-        "React Native",
-        "Real-time Tracking",
-        "Payment Gateway",
-        "Firebase",
-        "Context API",
-      ],
-      gradient: "from-orange-500 to-red-500",
-      category: "Logistics",
-    },
+      link: "https://play.google.com/store/apps/details?id=com.vcrow_edu"
+    }
   ];
 
   const containerVariants = {
@@ -138,7 +99,7 @@ const Projects = () => {
       scale: 1,
       transition: {
         duration: 0.6,
-        type: "spring",
+        type: "spring" as any,
         stiffness: 100
       }
     }
@@ -216,19 +177,34 @@ const Projects = () => {
                         >
                           {project.icon}
                         </motion.div>
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.2 }}
-                        >
-                          <Badge
-                            variant="outline"
-                            className="text-xs text-foreground-muted"
+                        <div className="flex flex-col items-end gap-2">
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
                           >
-                            {project.category}
-                          </Badge>
-                        </motion.div>
+                            <Badge
+                              variant="outline"
+                              className="text-xs text-foreground-muted"
+                            >
+                              {project.category}
+                            </Badge>
+                          </motion.div>
+                          {project.link && (
+                            <motion.a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-foreground-secondary hover:text-primary transition-colors flex items-center gap-1 text-sm bg-surface-elevated px-2 py-1 rounded-md"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                              <span>View App</span>
+                            </motion.a>
+                          )}
+                        </div>
                       </div>
 
                       {/* Project Info */}

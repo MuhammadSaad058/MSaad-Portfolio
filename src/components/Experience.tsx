@@ -27,17 +27,17 @@ const Experience = () => {
       location: "Islamabad, Pakistan",
       period: "Oct 2024 – Present",
       type: "Current Position",
-      description: "Leading cross-platform mobile application development with focus on advanced integrations and performance optimization.",
+      description: "",
       achievements: [
-        "Built cross-platform apps with React Native, TypeScript, and JavaScript",
-        "Integrated Google Maps API for location-based features",
-        "Implemented biometric authentication for enhanced security",
-        "Developed barcode scanning functionality",
-        "Set up push notifications system",
-        "Integrated multiple payment gateways",
-        "Optimized app performance using Redux & Context API"
+        "Developed cross-platform mobile applications using React Native, TypeScript, and JavaScript, focusing on intuitive UI/UX, smooth interactions, and responsive design across iOS and Android.",
+        "Integrated Google Maps API for navigation, location-based services, and real-time geolocation tracking, along with RESTful API integration for seamless backend communication.",
+        "Implemented advanced features including biometric authentication, barcode scanning, push notifications, in-app purchases, and deep linking to enhance functionality and user engagement.",
+        "Utilized Firebase and Supabase for authentication, real-time data handling, and scalable backend services.",
+        "Applied modern state management techniques including Redux Toolkit, Zustand, Context API, TanStack Query (React Query), and custom hooks to ensure efficient state handling, optimized performance, and minimal re-renders.",
+        "Performed app debugging, testing, and performance optimization to maintain reliability and consistency across multiple devices and platforms.",
+        "Managed the complete app deployment lifecycle, including building, testing, and publishing applications on the Apple App Store and Google Play Store."
       ],
-      technologies: ["React Native", "TypeScript", "JavaScript", "Redux", "Google Maps API", "Biometric Auth", "Payment Gateways"]
+      technologies: ["React Native", "TypeScript", "JavaScript", "Firebase", "Supabase", "Redux Toolkit", "Zustand", "Context API", "React Query"]
     },
     {
       title: "React Native Developer",
@@ -45,15 +45,13 @@ const Experience = () => {
       location: "Islamabad, Pakistan",
       period: "Jul 2024 – Sep 2024",
       type: "Contract",
-      description: "Developed robust mobile applications with comprehensive backend integration and state management optimization.",
+      description: "",
       achievements: [
-        "Built cross-platform applications with React Native",
-        "Implemented comprehensive Firebase integration",
-        "Optimized state management with Redux Toolkit",
-        "Utilized Context API for efficient data flow",
-        "Delivered high-quality mobile solutions within tight deadlines"
+        "Developed cross-platform mobile apps using React Native, TypeScript, JavaScript, ensuring performance, scalability.",
+        "Integrated Firebase for real-time sync, implemented REST APIs with caching, error handling, optimized responsiveness.",
+        "Managed state with Redux, Redux Toolkit, Context API, improving performance, scalability, and user experience."
       ],
-      technologies: ["React Native", "Firebase", "Redux Toolkit", "Context API", "JavaScript"]
+      technologies: ["React Native", "TypeScript", "JavaScript", "Firebase", "Redux", "Context API"]
     }
   ];
 
@@ -216,11 +214,13 @@ const Experience = () => {
 
                       {/* Experience Details */}
                       <div className="lg:w-2/3 space-y-4">
-                        <p className="text-foreground-secondary leading-relaxed">
-                          {exp.description}
-                        </p>
+                        {exp.description ? (
+                          <p className="text-foreground-secondary leading-relaxed">
+                            {exp.description}
+                          </p>
+                        ) : null}
 
-                        {/* Achievements */}
+                        {/* Achievements */ }
                         <div className="space-y-3">
                           <h4 className="font-semibold text-foreground">Key Achievements:</h4>
                           <ul className="space-y-2">
