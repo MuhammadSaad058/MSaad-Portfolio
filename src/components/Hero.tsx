@@ -21,7 +21,8 @@ const Hero = () => {
   };
 
   // Stagger animation for name letters
-  const nameLetters = "Muhammad Saad".split("");
+  // Stagger animation for name letters
+  const nameWords = "Muhammad Saad".split(" ");
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -117,27 +118,31 @@ const Hero = () => {
 
             {/* Animated Name with stagger */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              <motion.span
+              <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-gradient-primary bg-clip-text text-transparent inline-flex flex-wrap justify-center"
+                className="bg-gradient-primary bg-clip-text text-transparent flex flex-wrap justify-center gap-x-3 sm:gap-x-4"
               >
-                {nameLetters.map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    variants={letterVariants}
-                    className="inline-block"
-                    whileHover={{
-                      scale: 1.2,
-                      color: "#a855f7",
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    {letter === " " ? "\u00A0" : letter}
-                  </motion.span>
+                {nameWords.map((word, wordIndex) => (
+                  <span key={wordIndex} className="inline-flex">
+                    {word.split("").map((letter, letterIndex) => (
+                      <motion.span
+                        key={`${wordIndex}-${letterIndex}`}
+                        variants={letterVariants}
+                        className="inline-block"
+                        whileHover={{
+                          scale: 1.2,
+                          color: "#a855f7",
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </span>
                 ))}
-              </motion.span>
+              </motion.div>
             </h1>
 
             <motion.p

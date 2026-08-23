@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Code, Smartphone, Database, Shield } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 const About = () => {
   const highlights = [
@@ -26,7 +26,7 @@ const About = () => {
     }
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -36,7 +36,7 @@ const About = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -91,9 +91,7 @@ const About = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                 >
-                  I'm a <strong className="text-foreground">skilled Software Developer</strong> with extensive expertise in
-                  <strong className="text-primary"> React Native, JavaScript, TypeScript, Redux, and Firebase</strong>.
-                  My passion lies in creating seamless cross-platform solutions that deliver exceptional user experiences.
+                  I'm a <strong className="text-foreground">Skilled Software Developer</strong> with <strong className="text-primary">2+ years of experience</strong> building high-quality cross-platform mobile applications for iOS and Android. My passion lies in creating seamless solutions that deliver exceptional user experiences.
                 </motion.p>
 
                 <motion.p
@@ -103,10 +101,8 @@ const About = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
                 >
-                  I specialize in building mobile applications with <strong className="text-foreground">real-time functionality,
-                    responsive UI design, and smooth user experience</strong>. My technical strengths include
-                  <strong className="text-accent"> API integration, secure authentication, performance optimization,
-                    and comprehensive debugging</strong>.
+                  I specialize in developing <strong className="text-foreground">scalable, performance-driven apps</strong> with a focus on 
+                  <strong className="text-accent"> seamless user experiences, secure authentication, and efficient backend integration</strong>.
                 </motion.p>
 
                 <motion.p
@@ -116,9 +112,7 @@ const About = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 }}
                 >
-                  With a focus on <strong className="text-foreground">modern development practices</strong> and
-                  <strong className="text-primary"> cutting-edge technologies</strong>, I deliver high-quality mobile
-                  solutions that meet business objectives and exceed user expectations.
+                  I have a <strong className="text-foreground">proven ability</strong> to manage the <strong className="text-primary">complete app lifecycle</strong>, from initial development to successful deployment on the Apple App Store and Google Play Store.
                 </motion.p>
               </div>
             </motion.div>
