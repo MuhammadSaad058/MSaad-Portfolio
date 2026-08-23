@@ -117,7 +117,7 @@ const Education = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: isMobile ? 0.2 : 0.3 }}
+            viewport={{ once: true, amount: isMobile ? 0.05 : 0.1 }}
           >
             {/* Timeline Line */}
             <motion.div
@@ -253,7 +253,7 @@ const Education = () => {
                                 style={{ willChange: 'transform, opacity' }}
                                 initial={{ opacity: 0, x: isMobile ? -5 : -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
+                                viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                                 transition={{ delay: isMobile ? highlightIndex * 0.03 : highlightIndex * 0.05 }}
                                 whileHover={!isTouchDevice ? { x: 5 } : {}}
                               >

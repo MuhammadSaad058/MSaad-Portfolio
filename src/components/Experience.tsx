@@ -125,7 +125,7 @@ const Experience = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: isMobile ? 0.2 : 0.3 }}
+            viewport={{ once: true, amount: isMobile ? 0.05 : 0.1 }}
           >
             {/* Timeline Line */}
             <motion.div
@@ -234,7 +234,7 @@ const Experience = () => {
                                 variants={achievementVariants}
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true, amount: 0.3 }}
+                                viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                                 whileHover={!isTouchDevice ? { x: 5 } : {}}
                               >
                                 <motion.div
