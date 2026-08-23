@@ -121,7 +121,7 @@ const Education = () => {
           >
             {/* Timeline Line */}
             <motion.div
-              className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"
+              className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"
               style={{ willChange: 'height' }}
               initial={{ height: 0 }}
               whileInView={{ height: "100%" }}
@@ -137,7 +137,7 @@ const Education = () => {
               >
                 {/* Timeline Dot */}
                 <motion.div
-                  className={`absolute left-0 md:left-8 top-8 w-4 h-4 -ml-2 rounded-full ${edu.color === 'primary' ? 'bg-primary' : 'bg-accent'} shadow-glow z-10`}
+                  className={`absolute left-4 md:left-8 top-8 w-4 h-4 -ml-2 rounded-full ${edu.color === 'primary' ? 'bg-primary' : 'bg-accent'} shadow-glow z-10`}
                   style={{ willChange: 'transform' }}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -155,10 +155,10 @@ const Education = () => {
                       : "0 20px 50px rgba(244, 114, 182, 0.2)"
                   } : {}}
                   transition={{ duration: 0.3 }}
-                  className="ml-0 md:ml-20"
+                  className="ml-12 md:ml-20"
                 >
                   <Card
-                    className="p-8 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30"
+                    className="p-6 md:p-8 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30"
                   >
                     <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                       {/* Education Header */}

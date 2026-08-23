@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -70,7 +70,7 @@ const Navbar = () => {
             <div className="w-8 h-8 rounded-full bg-gradient-primary p-0.5 overflow-hidden">
               <div className="w-full h-full rounded-full bg-surface overflow-hidden">
                 <img
-                  src="/profile.jpg"
+                  src="/ProfilePic.png"
                   alt="MS"
                   className="w-full h-full object-cover object-top"
                 />

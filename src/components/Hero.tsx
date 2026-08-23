@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Download, Mail, MapPin, Phone, Linkedin, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { Download, Mail, MapPin, Phone, Linkedin, ArrowRight, Github, Globe } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 
 const Hero = () => {
@@ -23,7 +23,7 @@ const Hero = () => {
   // Stagger animation for name letters
   const nameLetters = "Muhammad Saad".split("");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -33,15 +33,15 @@ const Hero = () => {
     }
   };
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 200
+        damping: 15,
+        stiffness: 100
       }
     }
   };
@@ -125,7 +125,7 @@ const Hero = () => {
             >
               <div className="w-full h-full rounded-full bg-surface flex items-center justify-center overflow-hidden">
                 <motion.img
-                  src="/profile.jpg"
+                  src="/ProfilePic.png"
                   alt="Muhammad Saad"
                   className="w-full h-full object-cover object-top"
                   whileHover={{ scale: 1.1 }}
@@ -185,7 +185,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 style={{ display: "inline-block" }}
               >
-                React Native Developer
+                Mobile App Developer
               </motion.span> crafting
               exceptional mobile experiences with modern technologies.
             </motion.p>
@@ -198,13 +198,18 @@ const Hero = () => {
             className="flex flex-wrap justify-center gap-6 mb-10 text-foreground-muted"
           >
             {[
-              { icon: MapPin, text: "Islamabad, Pakistan" },
-              { icon: Mail, text: "ms0601572@gmail.com" },
-              { icon: Phone, text: "+92 3346664252" }
+              { icon: MapPin, text: "Islamabad, Pakistan", href: "#" },
+              { icon: Mail, text: "msaadi252gb@gmail.com", href: "mailto:msaadi252gb@gmail.com" },
+              { icon: Phone, text: "+92 3346664252", href: "tel:+923346664252" },
+              { icon: Linkedin, text: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-saad-5b2486204" },
+              { icon: Github, text: "GitHub", href: "https://github.com/MuhammadSaad058" }
             ].map((item, index) => (
-              <motion.div
+              <motion.a
                 key={index}
-                className="flex items-center gap-2"
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.1 + index * 0.1 }}
@@ -212,7 +217,7 @@ const Hero = () => {
               >
                 <item.icon className="w-5 h-5 text-primary" />
                 <span>{item.text}</span>
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
 

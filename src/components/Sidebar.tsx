@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Home, User, Code, Briefcase, FolderGit2, GraduationCap, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Moon, Sun, Home, User, Code, Briefcase, FolderGit2, GraduationCap, Mail, Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import MagneticButton from "./MagneticButton";
 
 const Sidebar = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -39,9 +39,8 @@ const Sidebar = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Github, href: "https://github.com/MuhammadSaad058", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/muhammad-saad-5b2486204", label: "LinkedIn" }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -59,7 +58,7 @@ const Sidebar = () => {
         <div className="w-20 h-20 rounded-full bg-gradient-primary p-0.5 mb-3 overflow-hidden shadow-lg">
           <div className="w-full h-full rounded-full bg-surface overflow-hidden">
             <img
-              src="/profile.jpg"
+              src="/ProfilePic.png"
               alt="Muhammad Saad"
               className="w-full h-full object-cover object-top"
             />
@@ -68,7 +67,7 @@ const Sidebar = () => {
         <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
           M. Saad
         </h1>
-        <p className="text-xs text-foreground-muted mt-1">Full Stack Developer</p>
+        <p className="text-xs text-foreground-muted mt-1">Software Engineer</p>
       </div>
 
       {/* Navigation */}

@@ -9,6 +9,10 @@ import {
   Map,
   GraduationCap,
   Truck,
+  Apple,
+  Play,
+  Wrench,
+  Video
 } from "lucide-react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { MouseEvent } from "react";
@@ -35,21 +39,8 @@ const Projects = () => {
       technologies: ["React Native", "Stripe", "Google Maps API", "TypeScript"],
       gradient: "from-orange-500 to-red-500",
       category: "E-Commerce",
-      link: "https://apps.apple.com/us/app/savorconnect/id6736651275"
-    },
-    {
-      title: "BuyNothings - Used Products Marketplace App",
-      description: "A buy-and-sell platform for users to list and purchase pre-owned items, facilitating seamless interactions.",
-      icon: <Smartphone className="h-6 w-6" />,
-      features: [
-        "Developed a buy-and-sell platform for users to list and purchase pre-owned items.",
-        "Implemented image-based product posting, allowing users to upload pictures and add descriptions.",
-        "Designed a chat/messaging system to facilitate direct communication between buyers and sellers."
-      ],
-      technologies: ["React Native", "Firebase", "Real-time Chat", "Redux"],
-      gradient: "from-green-500 to-teal-500",
-      category: "Marketplace",
-      link: "https://apps.apple.com/pk/app/buy-nothings/id6755946101"
+      appStoreLink: "https://apps.apple.com/us/app/savorconnect/id6736651275",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.savour_kitchen&hl=en"
     },
     {
       title: "Activity Maps",
@@ -63,7 +54,8 @@ const Projects = () => {
       technologies: ["React Native", "Google Maps API", "Biometric Auth", "Payment Integration", "Redux"],
       gradient: "from-blue-500 to-cyan-500",
       category: "Location-based",
-      link: "https://play.google.com/store/apps/details?id=com.activitymaps"
+      appStoreLink: "https://apps.apple.com/us/app/activity-maps/id6757748665",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.activitymaps"
     },
     {
       title: "VCROW - School Management",
@@ -77,7 +69,53 @@ const Projects = () => {
       technologies: ["React Native", "Firebase", "Analytics", "Payment Gateway", "Redux Toolkit"],
       gradient: "from-indigo-500 to-purple-500",
       category: "Education",
-      link: "https://play.google.com/store/apps/details?id=com.vcrow_edu"
+      appStoreLink: "",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.vcrow_edu"
+    },
+    {
+      title: "ProperMech",
+      description: "A cross-platform mobile app where car owners can manage their vehicles, search for specialized mechanics, request repair services, and track job progress in real-time.",
+      icon: <Wrench className="h-6 w-6" />,
+      features: [
+        "Developed a cross-platform mobile app where car owners can manage their vehicles, search for specialized mechanics, request repair services, and track job progress in real-time.",
+        "Integrated features like Google and Apple single sign-on (SSO), push notifications via Firebase Cloud Messaging, real-time database syncing with Firestore, and camera/image selection capabilities.",
+        "Optimized app performance through efficient React Navigation routing, streamlined real-time data communication, UI/UX code optimization, and bug resolution."
+      ],
+      technologies: ["React Native", "Firebase", "SSO", "React Navigation"],
+      gradient: "from-yellow-500 to-amber-500",
+      category: "Automotive",
+      appStoreLink: "https://apps.apple.com/pk/app/propermech/id6787107568",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.bayworks.customer"
+    },
+    {
+      title: "ProperMech Pro",
+      description: "A cross-platform mobile app where mechanics can manage their daily schedules, review and accept incoming repair jobs, and track order progress in real-time.",
+      icon: <Truck className="h-6 w-6" />,
+      features: [
+        "Developed a cross-platform mobile app where mechanics can manage their daily schedules, review and accept incoming repair jobs, and track order progress in real-time.",
+        "Integrated features like Google and Apple SSO, real-time database syncing with Firestore, camera/image selection capabilities, and an AI Service Writer via Firebase Cloud Functions.",
+        "Optimized app performance through efficient React Navigation routing, streamlined real-time data communication for order management, UI/UX code optimization, and bug resolution."
+      ],
+      technologies: ["React Native", "Firebase", "AI Service Writer", "Firestore"],
+      gradient: "from-red-500 to-rose-500",
+      category: "Automotive",
+      appStoreLink: "https://apps.apple.com/ph/app/propermech-pro/id6787103671",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.bayworks.pro&hl=en"
+    },
+    {
+      title: "Talk2Learn",
+      description: "A cross-platform mobile app where users can manage their language profiles, discover live community rooms, and participate in real-time voice and video language exchanges.",
+      icon: <Video className="h-6 w-6" />,
+      features: [
+        "Developed a cross-platform mobile app where users can manage their language profiles, discover live community rooms, and participate in real-time voice and video language exchanges.",
+        "Integrated features like Google and Apple SSO, real-time database syncing and presence management with Firestore, and a dedicated WebRTC SFU via Agora for low-latency group video/voice calls.",
+        "Optimized app performance and architecture by leveraging Riverpod for complex real-time state management, efficient GoRouter navigation, and streamlined data listeners."
+      ],
+      technologies: ["Flutter", "Agora WebRTC", "Firebase", "Riverpod", "GoRouter"],
+      gradient: "from-sky-500 to-indigo-500",
+      category: "Social",
+      appStoreLink: "https://apps.apple.com/ma/app/talk2learn/id6795451031",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.saadTech.talk2learn"
     }
   ];
 
@@ -191,17 +229,30 @@ const Projects = () => {
                               {project.category}
                             </Badge>
                           </motion.div>
-                          {project.link && (
+                          {project.appStoreLink && (
                             <motion.a
-                              href={project.link}
+                              href={project.appStoreLink}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-foreground-secondary hover:text-primary transition-colors flex items-center gap-1 text-sm bg-surface-elevated px-2 py-1 rounded-md"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
-                              <ExternalLink className="h-4 w-4" />
-                              <span>View App</span>
+                              <Apple className="h-4 w-4" />
+                              <span>App Store</span>
+                            </motion.a>
+                          )}
+                          {project.playStoreLink && (
+                            <motion.a
+                              href={project.playStoreLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-foreground-secondary hover:text-primary transition-colors flex items-center gap-1 text-sm bg-surface-elevated px-2 py-1 rounded-md"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Play className="h-4 w-4" />
+                              <span>Play Store</span>
                             </motion.a>
                           )}
                         </div>

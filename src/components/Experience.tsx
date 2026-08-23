@@ -22,22 +22,23 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "React Native Developer",
+      title: "Mobile App Developer",
       company: "Mubbits",
       location: "Islamabad, Pakistan",
       period: "Oct 2024 – Present",
       type: "Current Position",
       description: "",
       achievements: [
-        "Developed cross-platform mobile applications using React Native, TypeScript, and JavaScript, focusing on intuitive UI/UX, smooth interactions, and responsive design across iOS and Android.",
-        "Integrated Google Maps API for navigation, location-based services, and real-time geolocation tracking, along with RESTful API integration for seamless backend communication.",
-        "Implemented advanced features including biometric authentication, barcode scanning, push notifications, in-app purchases, and deep linking to enhance functionality and user engagement.",
-        "Utilized Firebase and Supabase for authentication, real-time data handling, and scalable backend services.",
-        "Applied modern state management techniques including Redux Toolkit, Zustand, Context API, TanStack Query (React Query), and custom hooks to ensure efficient state handling, optimized performance, and minimal re-renders.",
-        "Performed app debugging, testing, and performance optimization to maintain reliability and consistency across multiple devices and platforms.",
-        "Managed the complete app deployment lifecycle, including building, testing, and publishing applications on the Apple App Store and Google Play Store."
+        "Developed high-performance cross-platform mobile applications using React Native, Flutter, TypeScript, JavaScript, and Dart, delivering intuitive UI/UX, responsive layouts, and consistent user experiences across iOS and Android.",
+        "Built scalable and maintainable mobile solutions by integrating RESTful APIs, Google Maps API, real-time geolocation, navigation, and location-based services for seamless backend communication and enhanced user experiences.",
+        "Implemented advanced mobile features including biometric authentication, barcode/QR code scanning, push notifications, deep linking, in-app purchases, camera integration, and file handling, improving application functionality and user engagement.",
+        "Leveraged Firebase and Supabase for authentication, real-time databases, cloud services, push notifications, analytics, and scalable backend infrastructure across React Native and Flutter applications.",
+        "Applied modern state management solutions including Redux, Redux Toolkit, Context API, Zustand, TanStack Query (React Query) for React Native, and Provider, Riverpod, and BLoC for Flutter to build scalable, maintainable, and high-performance applications with optimized rendering.",
+        "Designed reusable, modular, and scalable UI components while following clean architecture, best coding practices, and platform-specific guidelines to ensure maintainability and code quality.",
+        "Performed comprehensive debugging, testing, profiling, and performance optimization using platform-specific tools, ensuring stable, secure, and reliable applications across a wide range of Android and iOS devices.",
+        "Managed the complete mobile application lifecycle, including development, CI/CD support, build generation, TestFlight distribution, App Store Connect and Google Play Console releases, versioning, and successful deployment of production applications."
       ],
-      technologies: ["React Native", "TypeScript", "JavaScript", "Firebase", "Supabase", "Redux Toolkit", "Zustand", "Context API", "React Query"]
+      technologies: ["React Native", "Flutter", "TypeScript", "JavaScript", "Dart", "Firebase", "Supabase", "Redux Toolkit", "Zustand", "Riverpod", "BLoC", "Context API", "React Query"]
     },
     {
       title: "React Native Developer",
@@ -128,7 +129,7 @@ const Experience = () => {
           >
             {/* Timeline Line */}
             <motion.div
-              className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"
+              className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"
               style={{ willChange: 'height' }}
               initial={{ height: 0 }}
               whileInView={{ height: "100%" }}
@@ -144,7 +145,7 @@ const Experience = () => {
               >
                 {/* Timeline Dot */}
                 <motion.div
-                  className="absolute left-0 md:left-8 top-8 w-4 h-4 -ml-2 rounded-full bg-primary shadow-glow z-10"
+                  className="absolute left-4 md:left-8 top-8 w-4 h-4 -ml-2 rounded-full bg-primary shadow-glow z-10"
                   style={{ willChange: 'transform' }}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -160,10 +161,10 @@ const Experience = () => {
                     boxShadow: "0 20px 50px rgba(139, 92, 246, 0.2)"
                   } : {}}
                   transition={{ duration: 0.3 }}
-                  className="ml-0 md:ml-20"
+                  className="ml-12 md:ml-20"
                 >
                   <Card
-                    className="p-8 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30"
+                    className="p-6 md:p-8 bg-surface hover:bg-surface-elevated transition-all duration-300 border-border hover:border-primary/30"
                   >
                     <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                       {/* Experience Header */}

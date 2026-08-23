@@ -20,9 +20,9 @@ const Skills = () => {
       title: "Mobile Development",
       skills: [
         { name: "React Native", level: 95 },
+        { name: "Flutter", level: 85 },
         { name: "Redux", level: 90 },
-        { name: "Redux Toolkit", level: 88 },
-        { name: "Context API", level: 85 }
+        { name: "Redux Toolkit", level: 88 }
       ],
       icon: "📱",
       color: "bg-accent/10 text-accent"
@@ -31,6 +31,7 @@ const Skills = () => {
       title: "Backend & Databases",
       skills: [
         { name: "Firebase", level: 90 },
+        { name: "SupaBase", level: 85 },
         { name: "SQL Database", level: 80 },
         { name: "MongoDB", level: 75 }
       ],

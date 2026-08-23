@@ -1,14 +1,14 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Linkedin, MessageCircle, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, MessageCircle, Send, Github } from 'lucide-react';
 
 const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      value: "ms0601572@gmail.com",
-      href: "mailto:ms0601572@gmail.com",
+      value: "msaadi252gb@gmail.com",
+      href: "mailto:msaadi252gb@gmail.com",
       color: "text-primary"
     },
     {
@@ -29,8 +29,15 @@ const Contact = () => {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
       value: "LinkedIn Profile",
-      href: "#",
+      href: "https://www.linkedin.com/in/muhammad-saad-5b2486204",
       color: "text-blue-400"
+    },
+    {
+      icon: <Github className="h-5 w-5" />,
+      label: "GitHub",
+      value: "MuhammadSaad058",
+      href: "https://github.com/MuhammadSaad058",
+      color: "text-foreground"
     }
   ];
 
@@ -106,7 +113,7 @@ const Contact = () => {
                   <Button 
                     variant="outline"
                     className="flex-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                    onClick={() => window.open('mailto:ms0601572@gmail.com', '_blank')}
+                    onClick={() => window.open('mailto:msaadi252gb@gmail.com', '_blank')}
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
                     Send Email
@@ -147,7 +154,7 @@ const Contact = () => {
                     
                     <Button 
                       className="w-full bg-accent hover:bg-accent-hover text-accent-foreground"
-                      onClick={() => window.open('mailto:ms0601572@gmail.com?subject=Project Inquiry', '_blank')}
+                      onClick={() => window.open('mailto:msaadi252gb@gmail.com?subject=Project Inquiry', '_blank')}
                     >
                       Start a Conversation
                     </Button>
