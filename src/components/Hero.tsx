@@ -50,49 +50,15 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-0">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            rotate: [0, 90, 0],
-            x: [0, 50, 0],
-            y: [0, -30, 0]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 left-20 w-72 h-72 bg-primary rounded-full blur-[100px]"
+        <div
+          className="absolute top-20 left-20 w-72 h-72 bg-primary/30 rounded-full blur-[100px]"
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.2, 0.4, 0.2],
-            rotate: [0, -60, 0],
-            x: [0, -40, 0],
-            y: [0, 40, 0]
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-accent rounded-full blur-[120px]"
+        <div
+          className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full blur-[120px]"
         />
         {/* Additional floating orbs */}
-        <motion.div
-          animate={{
-            y: [0, -50, 0],
-            opacity: [0.1, 0.3, 0.1]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/2 left-1/4 w-48 h-48 bg-purple-500 rounded-full blur-[80px]"
+        <div
+          className="absolute top-1/2 left-1/4 w-48 h-48 bg-purple-500/20 rounded-full blur-[80px]"
         />
       </div>
 
