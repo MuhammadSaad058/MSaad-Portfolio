@@ -1,29 +1,7 @@
-import { useEffect } from 'react';
-
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Experience from '@/components/Experience';
-import Projects from '@/components/Projects';
-import Education from '@/components/Education';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import Index from "./Index";
 
 const Portfolio = () => {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <Index />;
 };
 
 export default Portfolio;

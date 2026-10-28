@@ -1,236 +1,255 @@
-import { Button } from "@/components/ui/button";
-import { Download, Mail, MapPin, Phone, Linkedin, ArrowRight, Github, Globe } from "lucide-react";
-import { motion, Variants } from "framer-motion";
-import MagneticButton from "./MagneticButton";
+import { ArrowRight, MessageCircle, Sparkles, Smartphone, ShieldCheck, Zap, Star, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  const downloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/Muhammad_Saad_CV.pdf";
-    link.download = "Muhammad_Saad_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const scrollToProjects = () => {
+    const section = document.getElementById("projects");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const section = document.getElementById("contact");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  // Stagger animation for name letters
-  // Stagger animation for name letters
-  const nameWords = "Muhammad Saad".split(" ");
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05
-      }
+  const scrollToEstimator = () => {
+    const section = document.getElementById("estimator");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  const letterVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 15,
-        stiffness: 100
-      }
-    }
-  };
+  const stats = [
+    { value: "8+", label: "Production Apps", sub: "Live on Stores" },
+    { value: "2+", label: "Years Experience", sub: "React Native & Flutter" },
+    { value: "5.0", label: "Client Rating", sub: "5-Star Reviews" },
+    { value: "100%", label: "Store Pass Rate", sub: "Zero Rejections" },
+  ];
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-0">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section
+      id="hero"
+      className="relative min-h-[92vh] flex items-center overflow-hidden pt-24 pb-16 lg:py-28 bg-transparent"
+    >
+      {/* ── Background gradient ambient orbs ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 -left-32 w-[520px] h-[520px] rounded-full bg-cyan-600/15 blur-[140px]" />
+        <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-purple-600/15 blur-[160px]" />
+        <div className="absolute -bottom-40 left-1/4 w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[130px]" />
+
+        {/* Subtle grid pattern */}
         <div
-          className="absolute top-20 left-20 w-72 h-72 bg-primary/30 rounded-full blur-[100px]"
-        />
-        <div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full blur-[120px]"
-        />
-        {/* Additional floating orbs */}
-        <div
-          className="absolute top-1/2 left-1/4 w-48 h-48 bg-purple-500/20 rounded-full blur-[80px]"
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Avatar/Profile with enhanced animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{
-              duration: 0.8,
-              type: "spring",
-              stiffness: 100
-            }}
-            className="mb-8"
-          >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* ── Left Column: Headlines & Call to Actions ── */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            {/* Status Pill */}
             <motion.div
-              className="w-48 h-48 sm:w-56 sm:h-56 mx-auto rounded-full bg-gradient-primary p-1 shadow-glow relative overflow-hidden group"
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                y: {
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 mb-6 backdrop-blur-md"
             >
-              <div className="w-full h-full rounded-full bg-surface flex items-center justify-center overflow-hidden">
-                <motion.img
-                  src="/ProfilePic.png"
-                  alt="Muhammad Saad"
-                  className="w-full h-full object-cover object-top"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+              <span>Available for New Mobile Projects</span>
             </motion.div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <motion.h2
-              className="text-lg sm:text-xl font-medium text-primary mb-4 tracking-wide uppercase"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            {/* Main Headline */}
+            <motion.h1
+              className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] mb-6 font-heading"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.1 }}
             >
-              Hello, I'm
-            </motion.h2>
+              Hire Senior React Native &amp; Flutter App Developer.{" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+                Engineered for 60FPS Velocity.
+              </span>
+            </motion.h1>
 
-            {/* Animated Name with stagger */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="bg-gradient-primary bg-clip-text text-transparent flex flex-wrap justify-center gap-x-3 sm:gap-x-4"
-              >
-                {nameWords.map((word, wordIndex) => (
-                  <span key={wordIndex} className="inline-flex">
-                    {word.split("").map((letter, letterIndex) => (
-                      <motion.span
-                        key={`${wordIndex}-${letterIndex}`}
-                        variants={letterVariants}
-                        className="inline-block"
-                        whileHover={{
-                          scale: 1.2,
-                          color: "#a855f7",
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        {letter}
-                      </motion.span>
-                    ))}
-                  </span>
-                ))}
-              </motion.div>
-            </h1>
-
+            {/* Sub-headline */}
             <motion.p
-              className="text-xl sm:text-2xl text-foreground-secondary mb-8 leading-relaxed max-w-2xl mx-auto"
+              className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.55, delay: 0.2 }}
             >
-              A passionate <motion.span
-                className="text-foreground font-semibold"
-                whileHover={{ scale: 1.05 }}
-                style={{ display: "inline-block" }}
-              >
-                Mobile App Developer
-              </motion.span> crafting
-              exceptional mobile experiences with modern technologies.
+              Architecting market-ready iOS &amp; Android mobile applications and startup MVPs. From Figma UI to App Store &amp; Google Play approval in 30 days — with buttery 60fps animations, Firebase/Supabase cloud backends, and zero agency overhead.
             </motion.p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="flex flex-wrap justify-center gap-6 mb-10 text-foreground-muted"
-          >
-            {[
-              { icon: MapPin, text: "Islamabad, Pakistan", href: "#" },
-              { icon: Mail, text: "msaadi252gb@gmail.com", href: "mailto:msaadi252gb@gmail.com" },
-              { icon: Phone, text: "+92 3346664252", href: "tel:+923346664252" },
-              { icon: Linkedin, text: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-saad-5b2486204" },
-              { icon: Github, text: "GitHub", href: "https://github.com/MuhammadSaad058" }
-            ].map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.href}
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-2 hover:text-primary transition-colors cursor-pointer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.1 + index * 0.1 }}
-                whileHover={{ scale: 1.05, x: 5 }}
+            {/* Category Stack Ticker */}
+            <motion.div
+              className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8 text-[11px] uppercase tracking-wider font-semibold text-slate-400"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-cyan-300">React Native</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-blue-300">Flutter &amp; Dart</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-purple-300">Agora WebRTC</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-amber-300">Firebase &amp; Supabase</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-emerald-300">60 FPS Reanimated</span>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.35 }}
+            >
+              <button
+                onClick={scrollToProjects}
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] transition-all duration-300 hover:scale-[1.02]"
               >
-                <item.icon className="w-5 h-5 text-primary" />
-                <span>{item.text}</span>
-              </motion.a>
-            ))}
-          </motion.div>
+                <span>Explore Shipped Apps</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <MagneticButton>
+              <button
+                onClick={scrollToEstimator}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:scale-[1.02] backdrop-blur-md"
+              >
+                <Zap className="w-4 h-4 text-cyan-400" />
+                <span>Estimate Project Cost</span>
+              </button>
+            </motion.div>
+
+            {/* Stats Counter Row */}
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/[0.08]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.45 }}
+            >
+              {stats.map((stat, i) => (
+                <div key={i} className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold font-heading bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-semibold text-slate-300 mt-0.5">
+                    {stat.label}
+                  </div>
+                  <div className="text-[11px] text-slate-500">
+                    {stat.sub}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* ── Right Column: Interactive Phone Mockup with Talk2Learn ── */}
+          <div className="lg:col-span-5 flex justify-center items-center relative">
+            <motion.div
+              className="relative w-full max-w-[340px] sm:max-w-[380px]"
+              initial={{ opacity: 0, scale: 0.92, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              {/* Outer ambient glow */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-600/20 rounded-[48px] blur-2xl -z-10 animate-pulse" />
+
+              {/* iPhone Frame */}
+              <div className="relative rounded-[42px] p-3 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+                {/* Dynamic Island / Speaker notch */}
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-900 border border-slate-700/60" />
+                  <div className="w-2 h-2 rounded-full bg-blue-950/80" />
+                </div>
+
+                {/* Screen Container */}
+                <div className="relative rounded-[32px] overflow-hidden bg-[#0d1322] aspect-[9/19.5] border border-white/10 shadow-inner group">
+                  {/* Talk2Learn Hero Image */}
+                  <img
+                    src="/talk2learn-hero.webp"
+                    alt="Talk2Learn - Live Language Exchange Mobile App"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  {/* Gradient bottom overlay for app info */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 pt-12 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/talk2learn-logo.png"
+                          alt="Logo"
+                          className="w-7 h-7 rounded-lg border border-white/20 bg-slate-900 object-contain p-0.5"
+                        />
+                        <div>
+                          <div className="text-xs font-bold text-white tracking-wide">Talk2Learn</div>
+                          <div className="text-[10px] text-cyan-400 font-medium">Agora WebRTC • Live Voice &amp; Video</div>
+                        </div>
+                      </div>
+                      <a
+                        href="https://apps.apple.com/ma/app/talk2learn/id6795451031"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1 rounded-md bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-[10px] font-semibold flex items-center gap-1 transition-colors border border-cyan-500/30"
+                      >
+                        <span>App Store</span>
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Floating Badge 1: 60 FPS Reanimated ── */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="absolute -top-4 -left-6 sm:-left-10 bg-[#0c1322]/90 backdrop-blur-xl border border-cyan-500/30 p-2.5 sm:p-3 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-2.5 z-20"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Button
-                  onClick={downloadCV}
-                  size="lg"
-                  className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-glow"
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume
-                </Button>
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                  <Zap className="w-4 h-4 fill-cyan-400" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-white font-heading">60 FPS Native Velocity</div>
+                  <div className="text-[9px] text-slate-400">Zero Bridge Stutter</div>
+                </div>
               </motion.div>
-            </MagneticButton>
 
-            <MagneticButton>
+              {/* ── Floating Badge 2: App Store Approved ── */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="absolute -bottom-6 -right-4 sm:-right-8 bg-[#0c1322]/90 backdrop-blur-xl border border-emerald-500/30 p-2.5 sm:p-3 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-2.5 z-20"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
-                <Button
-                  variant="outline"
-                  onClick={scrollToContact}
-                  size="lg"
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 rounded-lg font-medium transition-all duration-300"
-                >
-                  <Mail className="mr-2 h-5 w-5" />
-                  Contact Me
-                </Button>
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-white font-heading">100% App Store Pass</div>
+                  <div className="text-[9px] text-emerald-400">iOS &amp; Android Certified</div>
+                </div>
               </motion.div>
-            </MagneticButton>
-          </motion.div>
+
+              {/* ── Floating Badge 3: WebRTC SFU Audio/Video ── */}
+              <motion.div
+                className="hidden sm:flex absolute top-1/2 -right-8 translate-y-[-50%] bg-[#0c1322]/90 backdrop-blur-xl border border-purple-500/30 px-3 py-2 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] items-center gap-2 z-20"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <div className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
+                <span className="text-[10px] font-semibold text-purple-300">Agora WebRTC SFU</span>
+              </motion.div>
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

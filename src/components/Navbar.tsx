@@ -1,164 +1,224 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Download, ArrowUpRight, Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* Force dark mode */
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
+    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
+  }, []);
 
   useEffect(() => {
     const handleActiveSectionChange = (event: any) => {
       setActiveSection(event.detail);
     };
-
-    window.addEventListener('activeSectionChange', handleActiveSectionChange);
-    return () => window.removeEventListener('activeSectionChange', handleActiveSectionChange);
+    window.addEventListener("activeSectionChange", handleActiveSectionChange);
+    return () =>
+      window.removeEventListener(
+        "activeSectionChange",
+        handleActiveSectionChange
+      );
   }, []);
 
   const navItems = [
-    { label: "Home", href: "home" },
+    { label: "Work", href: "projects" },
+    { label: "Services", href: "services" },
+    { label: "Blueprints", href: "blueprints" },
+    { label: "Pricing", href: "pricing" },
     { label: "About", href: "about" },
-    { label: "Skills", href: "skills" },
-    { label: "Experience", href: "experience" },
-    { label: "Projects", href: "projects" },
-    { label: "Education", href: "education" },
     { label: "Contact", href: "contact" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
+  const downloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/Muhammad_Saad_CV.pdf";
+    link.download = "Muhammad_Saad_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <nav
-      className={`
-      fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${isScrolled
-          ? "bg-surface/80 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-        }
-    `}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-primary p-0.5 overflow-hidden">
-              <div className="w-full h-full rounded-full bg-surface overflow-hidden">
-                <img
-                  src="/ProfilePic.png"
-                  alt="MS"
-                  className="w-full h-full object-cover object-top"
-                />
+    <header className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
+      <div className="w-full max-w-7xl mx-auto pointer-events-auto">
+        <nav
+          className={cn(
+            "rounded-full transition-all duration-300 px-4 sm:px-6 py-2.5 flex items-center justify-between",
+            "bg-[#070b16]/90 backdrop-blur-2xl border border-cyan-500/25 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+          )}
+        >
+          {/* ── Left: Branding + Status Pill ── */}
+          <a
+            href="#hero"
+            onClick={(e) => handleNavClick(e, "hero")}
+            className="flex items-center gap-3 flex-shrink-0 group"
+          >
+            {/* Glowing avatar dot */}
+            <div className="relative">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-white text-[11px] font-heading shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+                MS
+              </div>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#070b16] animate-pulse" />
+            </div>
+
+            <div className="text-left">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold font-heading text-white tracking-tight group-hover:text-cyan-400 transition-colors">
+                  Muhammad Saad
+                </span>
+                <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-cyan-300 bg-cyan-500/10 border border-cyan-500/30">
+                  Open for Hire
+                </span>
+              </div>
+              <div className="text-[10px] text-slate-400 font-medium tracking-tight">
+                React Native &amp; Flutter Specialist
               </div>
             </div>
-            <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Muhammad Saad
-            </h1>
-          </div>
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
+          {/* ── Center: Nav Links (Desktop) ── */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
                 <a
                   key={item.label}
                   href={`#${item.href}`}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200",
-                    activeSection === item.href
-                      ? "text-primary bg-surface-elevated"
-                      : "text-foreground-secondary hover:text-primary hover:bg-surface-elevated"
+                    "relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-colors duration-200",
+                    isActive
+                      ? "text-cyan-400 bg-cyan-500/10"
+                      : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
                   )}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
                 </a>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsDark(!isDark)}
-              className="p-2"
+          {/* ── Right Actions: Language + Resume + Order Your App ── */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Language Selector Dropdown */}
+            <LanguageSelector variant="navbar" />
+
+            {/* Resume button */}
+            <button
+              onClick={downloadCV}
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all"
+              title="Download CV"
             >
-              {isDark ? (
-                <Sun className="h-4 w-4" />
+              <Download className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Resume</span>
+            </button>
+
+            {/* Primary Order Your App CTA */}
+            <a
+              href="https://wa.me/923346664252?text=Hi%20Saad,%20I%20would%20like%20to%20order%20an%20app%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-full text-xs font-bold text-white bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105"
+            >
+              <span>Order Your App</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/[0.08] transition-colors"
+              aria-label="Toggle navigation"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-4 h-4" />
               ) : (
-                <Moon className="h-4 w-4" />
+                <Menu className="w-4 h-4" />
               )}
-            </Button>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-4 w-4" />
-                ) : (
-                  <Menu className="h-4 w-4" />
-                )}
-              </Button>
-            </div>
+            </button>
           </div>
-        </div>
+        </nav>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-surface/95 backdrop-blur-md rounded-lg mt-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={`#${item.href}`}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={cn(
-                    "block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200",
-                    activeSection === item.href
-                      ? "text-primary bg-surface-elevated"
-                      : "text-foreground-secondary hover:text-primary hover:bg-surface-elevated"
-                  )}
+        {/* ── Mobile Navigation Drawer ── */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden mt-2 p-4 rounded-3xl bg-[#070b16]/95 backdrop-blur-2xl border border-cyan-500/25 shadow-2xl space-y-3"
+            >
+              <div className="grid grid-cols-2 gap-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={`#${item.href}`}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={cn(
+                      "px-3 py-2 rounded-xl text-xs font-semibold text-center transition-colors",
+                      activeSection === item.href
+                        ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30"
+                        : "text-slate-300 hover:text-white bg-white/[0.02]"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+
+              {/* Language drawer selector */}
+              <LanguageSelector variant="drawer" />
+
+              <div className="pt-2 flex gap-2">
+                <button
+                  onClick={downloadCV}
+                  className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-slate-300 bg-white/[0.04] border border-white/10 flex items-center justify-center gap-1.5"
                 >
-                  {item.label}
+                  <Download className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Resume PDF</span>
+                </button>
+                <a
+                  href="https://wa.me/923346664252"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 rounded-xl text-xs font-bold text-center text-white bg-gradient-to-r from-cyan-500 to-blue-600"
+                >
+                  WhatsApp
                 </a>
-              ))}
-            </div>
-          </div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </header>
   );
 };
 
