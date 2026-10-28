@@ -1,7 +1,9 @@
 import { Smartphone, Zap, Database, Rocket, LayoutDashboard, Wrench, CheckCircle2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
   const scrollToContact = () => {
     const section = document.getElementById("contact");
     if (section) {
@@ -138,13 +140,13 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            02 / End-to-End Capabilities
+            {t.services.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            SPECIALIZED APP SERVICES
+            {t.services.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Full-cycle mobile app and web engineering — from product architecture to App Store publishing. High-performance software designed to drive user retention, scalability, and startup success.
+            {t.services.subtitle}
           </p>
 
           {/* Value Props Bar */}

@@ -1,8 +1,10 @@
 import { useState, useMemo } from "react";
 import { Calculator, MessageCircle, Send, Check, Sparkles, Smartphone, Layers, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Estimator = () => {
+  const { t } = useLanguage();
   const [selectedArch, setSelectedArch] = useState<string>("marketplace");
   const [selectedPlatform, setSelectedPlatform] = useState<string>("both");
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([
@@ -219,13 +221,13 @@ const Estimator = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            04 / Transparent Pricing &amp; Scope
+            {t.estimator.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            INSTANT MOBILE PROJECT ESTIMATOR
+            {t.estimator.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Select your target architecture, desired hardware features, and design status to get an instant cost and timeline estimate for your custom mobile build.
+            {t.estimator.subtitle}
           </p>
         </div>
 

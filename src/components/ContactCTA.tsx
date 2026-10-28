@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { MessageCircle, Mail, Phone, MapPin, Download, Send, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { MessageCircle, Mail, Phone, MapPin, Download, Send, CheckCircle2, ArrowRight, Sparkles, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ContactCTA = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,7 +34,7 @@ const ContactCTA = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative bg-[#070a13] border-t border-white/[0.06]">
+    <section id="contact" className="py-24 relative bg-transparent border-t border-white/[0.06]">
       {/* Background radial glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[180px] pointer-events-none" />
 
@@ -184,32 +186,38 @@ const ContactCTA = () => {
                       <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                         Project Type
                       </label>
-                      <select
-                        value={formData.projectType}
-                        onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors"
-                      >
-                        <option value="Startup MVP Sprint (2-4 Weeks)">Startup MVP Sprint (2-4 Weeks)</option>
-                        <option value="Complete Production Mobile App">Complete Production Mobile App</option>
-                        <option value="Agora Audio/Video WebRTC App">Agora Audio/Video WebRTC App</option>
-                        <option value="App Store Code Rescue / Publishing">App Store Code Rescue / Publishing</option>
-                        <option value="Dedicated Monthly Retainer">Dedicated Monthly Retainer</option>
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={formData.projectType}
+                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                          className="w-full px-4 py-2.5 pr-10 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none cursor-pointer"
+                        >
+                          <option value="Startup MVP Sprint (2-4 Weeks)">Startup MVP Sprint (2-4 Weeks)</option>
+                          <option value="Complete Production Mobile App">Complete Production Mobile App</option>
+                          <option value="Agora Audio/Video WebRTC App">Agora Audio/Video WebRTC App</option>
+                          <option value="App Store Code Rescue / Publishing">App Store Code Rescue / Publishing</option>
+                          <option value="Dedicated Monthly Retainer">Dedicated Monthly Retainer</option>
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-cyan-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                         Estimated Budget
                       </label>
-                      <select
-                        value={formData.budget}
-                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors"
-                      >
-                        <option value="$1,500 - $2,500">$1,500 - $2,500</option>
-                        <option value="$2,500 - $4,500">$2,500 - $4,500</option>
-                        <option value="$4,500 - $8,000">$4,500 - $8,000</option>
-                        <option value="$8,000+">$8,000+</option>
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={formData.budget}
+                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                          className="w-full px-4 py-2.5 pr-10 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none cursor-pointer"
+                        >
+                          <option value="$1,500 - $2,500">$1,500 - $2,500</option>
+                          <option value="$2,500 - $4,500">$2,500 - $4,500</option>
+                          <option value="$4,500 - $8,000">$4,500 - $8,000</option>
+                          <option value="$8,000+">$8,000+</option>
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-cyan-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
                     </div>
                   </div>
 

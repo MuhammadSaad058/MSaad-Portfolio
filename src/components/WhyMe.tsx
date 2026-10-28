@@ -1,7 +1,9 @@
 import { Zap, ShieldCheck, Cpu, Smartphone, Layers, WifiOff, FileCode2, Palette } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const WhyMe = () => {
+  const { t } = useLanguage();
   const metrics = [
     {
       stat: "40%",
@@ -66,13 +68,13 @@ const WhyMe = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            03 / Competitive Advantage
+            {t.whyMe.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            WHY CLIENTS CHOOSE TO WORK WITH ME
+            {t.whyMe.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            High-impact mobile software engineering combining pixel-perfect UI fidelity, 60fps performance, and enterprise-grade architecture that scales effortlessly.
+            {t.whyMe.subtitle}
           </p>
         </div>
 

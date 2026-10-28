@@ -33,7 +33,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 relative bg-[#070a13] border-t border-white/[0.06]">
+    <section id="faq" className="py-24 relative bg-transparent border-t border-white/[0.06]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}

@@ -1,16 +1,149 @@
-import { ArrowRight, MessageCircle, Sparkles, Smartphone, ShieldCheck, Zap, Star, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  ExternalLink,
+  Smartphone,
+  Star,
+  CheckCircle2,
+} from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+  useMotionTemplate,
+} from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+
+interface HeroProject {
+  id: string;
+  name: string;
+  tabLabel: string;
+  category: string;
+  store: string;
+  rating: string;
+  screen: string;
+  tech: string;
+  link?: string;
+}
 
 const Hero = () => {
-  const scrollToProjects = () => {
-    const section = document.getElementById("projects");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+  const { t } = useLanguage();
+  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
+
+  // 3D Parallax Tilt Setup matching reference portfolio
+  const cardRef = useRef<HTMLDivElement>(null);
+  const boundsRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+
+  const rawRotX = useMotionValue(0);
+  const rawRotY = useMotionValue(0);
+  const glareX = useMotionValue(50);
+  const glareY = useMotionValue(50);
+
+  const rotX = useSpring(rawRotX, { stiffness: 280, damping: 26 });
+  const rotY = useSpring(rawRotY, { stiffness: 280, damping: 26 });
+
+  const glareBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.18) 0%, transparent 60%)`;
+
+  const onMouseEnter = () => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      boundsRef.current = {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+      };
     }
   };
 
-  const scrollToContact = () => {
-    const section = document.getElementById("contact");
+  const onMouseMove = (e: React.MouseEvent) => {
+    let bounds = boundsRef.current;
+    if (!bounds && cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      bounds = {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+      };
+      boundsRef.current = bounds;
+    }
+    if (!bounds || bounds.width === 0 || bounds.height === 0) return;
+
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+    const normX = (x / bounds.width) * 2 - 1;
+    const normY = (y / bounds.height) * 2 - 1;
+
+    rawRotX.set(-normY * 11);
+    rawRotY.set(normX * 13);
+    glareX.set((x / bounds.width) * 100);
+    glareY.set((y / bounds.height) * 100);
+  };
+
+  const onMouseLeave = () => {
+    rawRotX.set(0);
+    rawRotY.set(0);
+    glareX.set(50);
+    glareY.set(50);
+    boundsRef.current = null;
+  };
+
+  // ── Muhammad Saad's actual projects for Hero phone showcase ──
+  const heroProjects: HeroProject[] = [
+    {
+      id: "talk2learn",
+      name: "Talk2Learn",
+      tabLabel: t.hero.tabs.talk2learn,
+      category: "Live Voice & Video SFU",
+      store: "iOS & Android Live",
+      rating: "5.0 ★",
+      screen: "/talk2learn-hero.webp",
+      tech: "Flutter • Agora WebRTC • Riverpod",
+      link: "https://talk2learn-app-landing.vercel.app/",
+    },
+    {
+      id: "quit-puffing",
+      name: "Quit Puffing",
+      tabLabel: t.hero.tabs.quitPuffing,
+      category: "Habit & XP Gamification",
+      store: "Google Play Live",
+      rating: "4.9 ★",
+      screen: "/quit-puffing-screen.webp",
+      tech: "Flutter • Material 3 • Local DB",
+      link: "https://play.google.com/store/apps/details?id=com.mubbits.quit_puffing",
+    },
+    {
+      id: "propermech",
+      name: "ProperMech",
+      tabLabel: t.hero.tabs.properMech,
+      category: "Automotive Service & AI Dispatch",
+      store: "Google Play Live",
+      rating: "4.9 ★",
+      screen: "/propermech-screen.webp",
+      tech: "React Native • Firestore • Cloud AI",
+      link: "https://play.google.com/store/apps/details?id=com.bayworks.customer",
+    },
+    {
+      id: "activity-maps",
+      name: "Activity Maps",
+      tabLabel: t.hero.tabs.activityMaps,
+      category: "Local Discovery & GPS Maps",
+      store: "iOS & Android Live",
+      rating: "4.8 ★",
+      screen: "/activity-maps-screen.webp",
+      tech: "React Native • Google Maps • Biometrics",
+      link: "https://activity-maps.com/",
+    },
+  ];
+
+  const activeProject = heroProjects[activeHeroIndex];
+
+  const scrollToProjects = () => {
+    const section = document.getElementById("projects");
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -24,10 +157,10 @@ const Hero = () => {
   };
 
   const stats = [
-    { value: "8+", label: "Production Apps", sub: "Live on Stores" },
-    { value: "2+", label: "Years Experience", sub: "React Native & Flutter" },
-    { value: "5.0", label: "Client Rating", sub: "5-Star Reviews" },
-    { value: "100%", label: "Store Pass Rate", sub: "Zero Rejections" },
+    { value: "10+", label: t.hero.appsShipped, sub: "Live on Stores" },
+    { value: "3+", label: t.hero.experience, sub: "React Native & Flutter" },
+    { value: "5.0", label: t.hero.clientRating, sub: "Based on 5-Star Reviews" },
+    { value: "100%", label: t.hero.storePass, sub: "Zero Rejections" },
   ];
 
   return (
@@ -35,23 +168,6 @@ const Hero = () => {
       id="hero"
       className="relative min-h-[92vh] flex items-center overflow-hidden pt-24 pb-16 lg:py-28 bg-transparent"
     >
-      {/* ── Background gradient ambient orbs ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[520px] h-[520px] rounded-full bg-cyan-600/15 blur-[140px]" />
-        <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] rounded-full bg-purple-600/15 blur-[160px]" />
-        <div className="absolute -bottom-40 left-1/4 w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[130px]" />
-
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
@@ -62,22 +178,22 @@ const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 mb-6 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)]"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-              <span>Available for New Mobile Projects</span>
+              <span>{t.hero.badge}</span>
             </motion.div>
 
             {/* Main Headline */}
             <motion.h1
-              className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] mb-6 font-heading"
+              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08] mb-6 font-heading"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1 }}
             >
-              Hire Senior React Native &amp; Flutter App Developer.{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-                Engineered for 60FPS Velocity.
+              {t.hero.headlinePart1}{" "}
+              <span className="block mt-1 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 bg-clip-text text-transparent underline decoration-cyan-500/30 underline-offset-8">
+                {t.hero.headlinePart2}
               </span>
             </motion.h1>
 
@@ -88,7 +204,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.2 }}
             >
-              Architecting market-ready iOS &amp; Android mobile applications and startup MVPs. From Figma UI to App Store &amp; Google Play approval in 30 days — with buttery 60fps animations, Firebase/Supabase cloud backends, and zero agency overhead.
+              {t.hero.subheadline}
             </motion.p>
 
             {/* Category Stack Ticker */}
@@ -113,19 +229,21 @@ const Hero = () => {
               transition={{ duration: 0.55, delay: 0.35 }}
             >
               <button
+                type="button"
                 onClick={scrollToProjects}
-                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] transition-all duration-300 hover:scale-[1.02]"
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 cursor-pointer active:scale-95"
               >
-                <span>Explore Shipped Apps</span>
+                <span>{t.hero.exploreApps}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
+                type="button"
                 onClick={scrollToEstimator}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:scale-[1.02] backdrop-blur-md"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer active:scale-95 backdrop-blur-md"
               >
                 <Zap className="w-4 h-4 text-cyan-400" />
-                <span>Estimate Project Cost</span>
+                <span>{t.hero.estimateCost}</span>
               </button>
             </motion.div>
 
@@ -152,102 +270,157 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* ── Right Column: Interactive Phone Mockup with Talk2Learn ── */}
-          <div className="lg:col-span-5 flex justify-center items-center relative">
-            <motion.div
-              className="relative w-full max-w-[340px] sm:max-w-[380px]"
-              initial={{ opacity: 0, scale: 0.92, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+          {/* ── Right Column: Interactive Phone Mockup with Dynamic Filter Tabs ── */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-4 px-2">
+            
+            {/* ── Project Filter Tabs Above iPhone Frame (Switches Screen & Metadata) ── */}
+            <div className="w-full max-w-[340px] mb-4 flex items-center justify-center gap-1.5 p-1 rounded-xl bg-[#0c1222]/90 border border-cyan-500/20 shadow-md backdrop-blur-xl">
+              {heroProjects.map((item, idx) => {
+                const isActive = activeHeroIndex === idx;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setActiveHeroIndex(idx)}
+                    className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] font-heading font-semibold transition-all cursor-pointer truncate ${
+                      isActive
+                        ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/25 font-bold"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    {item.tabLabel}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* ── 3D Interactive iPhone Container ── */}
+            <div
+              ref={cardRef}
+              onMouseEnter={onMouseEnter}
+              onMouseMove={onMouseMove}
+              onMouseLeave={onMouseLeave}
+              className="relative w-full max-w-[280px] sm:max-w-[310px] md:max-w-[330px] mx-auto cursor-pointer"
+              style={{ perspective: "1000px" }}
             >
-              {/* Outer ambient glow */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-600/20 rounded-[48px] blur-2xl -z-10 animate-pulse" />
-
-              {/* iPhone Frame */}
-              <div className="relative rounded-[42px] p-3 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-                {/* Dynamic Island / Speaker notch */}
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-900 border border-slate-700/60" />
-                  <div className="w-2 h-2 rounded-full bg-blue-950/80" />
-                </div>
-
-                {/* Screen Container */}
-                <div className="relative rounded-[32px] overflow-hidden bg-[#0d1322] aspect-[9/19.5] border border-white/10 shadow-inner group">
-                  {/* Talk2Learn Hero Image */}
-                  <img
-                    src="/talk2learn-hero.webp"
-                    alt="Talk2Learn - Live Language Exchange Mobile App"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-
-                  {/* Gradient bottom overlay for app info */}
-                  <div className="absolute inset-x-0 bottom-0 p-4 pt-12 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex flex-col gap-1.5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <img
-                          src="/talk2learn-logo.png"
-                          alt="Logo"
-                          className="w-7 h-7 rounded-lg border border-white/20 bg-slate-900 object-contain p-0.5"
-                        />
-                        <div>
-                          <div className="text-xs font-bold text-white tracking-wide">Talk2Learn</div>
-                          <div className="text-[10px] text-cyan-400 font-medium">Agora WebRTC • Live Voice &amp; Video</div>
-                        </div>
-                      </div>
-                      <a
-                        href="https://apps.apple.com/ma/app/talk2learn/id6795451031"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-2.5 py-1 rounded-md bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-[10px] font-semibold flex items-center gap-1 transition-colors border border-cyan-500/30"
-                      >
-                        <span>App Store</span>
-                        <ExternalLink className="w-2.5 h-2.5" />
-                      </a>
+              <motion.div
+                style={{
+                  rotateX: rotX,
+                  rotateY: rotY,
+                  transformStyle: "preserve-3d",
+                }}
+                className="relative w-full transform-gpu will-change-transform"
+              >
+                {/* ── Floating Badge 1: 60 FPS Velocity (Left) ── */}
+                <div
+                  style={{ transform: "translateZ(45px)" }}
+                  className="absolute -top-4 -left-4 sm:-left-8 z-30 px-3 py-1.5 rounded-xl bg-[#0a1020]/90 backdrop-blur-md border border-cyan-500/30 shadow-xl flex items-center gap-2 pointer-events-none"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0 font-mono text-xs font-bold shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                    {"{ }"}
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-heading font-bold text-white leading-tight flex items-center gap-1">
+                      <span>60 FPS Velocity</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-cyan-400" />
+                    </div>
+                    <div className="text-[9px] font-mono text-slate-400 leading-tight">
+                      Native Fluidity
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* ── Floating Badge 1: 60 FPS Reanimated ── */}
-              <motion.div
-                className="absolute -top-4 -left-6 sm:-left-10 bg-[#0c1322]/90 backdrop-blur-xl border border-cyan-500/30 p-2.5 sm:p-3 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-2.5 z-20"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
-                  <Zap className="w-4 h-4 fill-cyan-400" />
+                {/* ── Floating Badge 2: Zero Rejections (Right) ── */}
+                <div
+                  style={{ transform: "translateZ(50px)" }}
+                  className="absolute -top-4 -right-4 sm:-right-8 z-30 px-3 py-1.5 rounded-xl bg-[#0a1020]/90 backdrop-blur-md border border-emerald-500/30 shadow-xl flex items-center gap-2 pointer-events-none"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-heading font-bold text-white leading-tight">
+                      Zero Rejections
+                    </div>
+                    <div className="text-[9px] font-mono text-slate-400 leading-tight">
+                      100% App Store Pass
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-[11px] font-bold text-white font-heading">60 FPS Native Velocity</div>
-                  <div className="text-[9px] text-slate-400">Zero Bridge Stutter</div>
+
+                {/* ── iPhone Body ── */}
+                <div className="relative rounded-[42px] p-2.5 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 border-2 border-cyan-500/30 shadow-2xl shadow-cyan-950/50 mt-3 group overflow-hidden">
+                  {/* Dynamic Glare Reflection */}
+                  <motion.div
+                    className="absolute inset-0 rounded-[42px] pointer-events-none opacity-40 transition-opacity z-30"
+                    style={{ background: glareBg }}
+                  />
+
+                  {/* Screen Outer Container */}
+                  <div className="relative rounded-[32px] overflow-hidden bg-black aspect-[9/18.8] w-full border border-slate-800">
+                    
+                    {/* Status Bar: Time & 5G */}
+                    <div className="absolute top-2.5 inset-x-5 flex justify-between items-center text-[10px] font-semibold text-slate-300 z-30 pointer-events-none">
+                      <span>9:41</span>
+                      {/* Dynamic Island Pill */}
+                      <div className="w-20 h-4 bg-black rounded-full border border-slate-800/80 mx-auto flex items-center justify-end px-2">
+                        <div className="w-2 h-2 rounded-full bg-cyan-950/60" />
+                      </div>
+                      <span className="text-cyan-400 font-mono text-[9px]">5G 100%</span>
+                    </div>
+
+                    {/* Screenshot Swapped Based on Active Tab Filter */}
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeProject.id}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.04 }}
+                        transition={{ duration: 0.35, ease: "easeInOut" }}
+                        className="w-full h-full relative"
+                      >
+                        <img
+                          src={activeProject.screen}
+                          alt={`${activeProject.name} mobile app UI`}
+                          className="w-full h-full object-cover object-top"
+                          loading="eager"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Bottom Floating Glass Card Overlay (Matches User Upload Exactly) */}
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={`overlay-${activeProject.id}`}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute inset-x-3 bottom-3 p-3 rounded-2xl bg-[#0a1020]/92 backdrop-blur-xl border border-cyan-500/30 shadow-2xl flex flex-col gap-1 z-20 pointer-events-auto"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-wider text-cyan-300 uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                            {activeProject.store}
+                          </span>
+                          <span className="text-[10px] font-mono font-bold text-cyan-300">
+                            {activeProject.rating}
+                          </span>
+                        </div>
+                        <div className="text-xs font-bold text-white tracking-tight truncate">
+                          {activeProject.name} • {activeProject.category}
+                        </div>
+                        <div className="text-[10px] font-mono text-slate-400 truncate">
+                          {activeProject.tech}
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+
+                  </div>
                 </div>
               </motion.div>
+            </div>
 
-              {/* ── Floating Badge 2: App Store Approved ── */}
-              <motion.div
-                className="absolute -bottom-6 -right-4 sm:-right-8 bg-[#0c1322]/90 backdrop-blur-xl border border-emerald-500/30 p-2.5 sm:p-3 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-2.5 z-20"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-bold text-white font-heading">100% App Store Pass</div>
-                  <div className="text-[9px] text-emerald-400">iOS &amp; Android Certified</div>
-                </div>
-              </motion.div>
-
-              {/* ── Floating Badge 3: WebRTC SFU Audio/Video ── */}
-              <motion.div
-                className="hidden sm:flex absolute top-1/2 -right-8 translate-y-[-50%] bg-[#0c1322]/90 backdrop-blur-xl border border-purple-500/30 px-3 py-2 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] items-center gap-2 z-20"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <div className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
-                <span className="text-[10px] font-semibold text-purple-300">Agora WebRTC SFU</span>
-              </motion.div>
-            </motion.div>
           </div>
 
         </div>

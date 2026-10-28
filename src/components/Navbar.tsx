@@ -36,12 +36,12 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: "Work", href: "projects" },
-    { label: "Services", href: "services" },
-    { label: "Blueprints", href: "blueprints" },
-    { label: "Pricing", href: "pricing" },
-    { label: "About", href: "about" },
-    { label: "Contact", href: "contact" },
+    { label: t.nav.projects, href: "projects" },
+    { label: t.nav.services, href: "services" },
+    { label: t.nav.blueprints, href: "blueprints" },
+    { label: t.nav.pricing, href: "pricing" },
+    { label: t.nav.about, href: "about" },
+    { label: t.nav.contact, href: "contact" },
   ];
 
   const handleNavClick = (
@@ -94,7 +94,7 @@ const Navbar = () => {
                   Muhammad Saad
                 </span>
                 <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-cyan-300 bg-cyan-500/10 border border-cyan-500/30">
-                  Open for Hire
+                  {t.nav.availableForHire}
                 </span>
               </div>
               <div className="text-[10px] text-slate-400 font-medium tracking-tight">
@@ -137,7 +137,7 @@ const Navbar = () => {
               title="Download CV"
             >
               <Download className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Resume</span>
+              <span>{t.nav.resume}</span>
             </button>
 
             {/* Primary Order Your App CTA */}
@@ -147,7 +147,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-4 py-2 rounded-full text-xs font-bold text-white bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105"
             >
-              <span>Order Your App</span>
+              <span>{t.nav.orderApp}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
 

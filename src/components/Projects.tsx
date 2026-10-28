@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Apple, Play, ExternalLink, Sparkles, ChevronRight, Check, X, Bookmark, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Project {
   id: string;
@@ -23,6 +24,7 @@ interface Project {
 }
 
 const Projects = () => {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -120,6 +122,7 @@ const Projects = () => {
       ],
       techStack: ["React Native", "TypeScript", "Stripe API", "Redux Toolkit", "REST APIs"],
       appStoreUrl: "https://apps.apple.com/ma/app/souvenir-store/id6788327287",
+      webUrl: "https://www.souvenir.live/",
     },
     {
       id: "propermech",
@@ -150,6 +153,7 @@ const Projects = () => {
       ],
       techStack: ["React Native", "Firebase Firestore", "SSO Authentication", "FCM Notifications", "React Navigation"],
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.bayworks.customer",
+      webUrl: "https://propermech.com/",
     },
     {
       id: "propermech-pro",
@@ -180,6 +184,7 @@ const Projects = () => {
       ],
       techStack: ["React Native", "TypeScript", "AI Cloud Functions", "Firestore", "Redux Toolkit"],
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.bayworks.pro&hl=en",
+      webUrl: "https://propermech.com/",
     },
     {
       id: "tapwars",
@@ -210,6 +215,7 @@ const Projects = () => {
       ],
       techStack: ["React Native", "Supabase Realtime", "Reanimated 3", "TypeScript", "Tailwind CSS"],
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.tapwarsApp&hl=en",
+      webUrl: "https://tap-wars-react.vercel.app/",
     },
     {
       id: "activity-maps",
@@ -307,10 +313,10 @@ const Projects = () => {
 
   // Exact categories matching Daniyal's reference portfolio
   const categories = [
-    { id: "all", label: "All" },
-    { id: "liveInStores", label: "Live in Stores" },
-    { id: "mobileApp", label: "Mobile App" },
-    { id: "webApp", label: "Web App" },
+    { id: "all", label: t.projects.categories.all },
+    { id: "liveInStores", label: t.projects.categories.liveInStores },
+    { id: "mobileApp", label: t.projects.categories.mobileApp },
+    { id: "webApp", label: t.projects.categories.webApp },
   ];
 
   const filteredProjects = projects.filter((p) => {
@@ -334,13 +340,13 @@ const Projects = () => {
           {/* Left: Section Titles */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-              01 / SHIPPED PRODUCTS &amp; CASE STUDIES
+              {t.projects.badge}
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-3">
-              FEATURED APPLICATIONS
+              {t.projects.title}
             </h2>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              Production-ready mobile applications engineered for startups and clients worldwide — with live App Store, Google Play, and enterprise deployments.
+              {t.projects.subtitle}
             </p>
           </div>
 
@@ -388,26 +394,26 @@ const Projects = () => {
                   <div className="flex items-center justify-between mb-8">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20">
                       <Bookmark className="w-3 h-3 text-cyan-400" />
-                      <span>{p.badgeType}</span>
+                      <span>{p.badgeType === "Mobile App" ? t.projects.badges.mobileApp : p.badgeType}</span>
                     </span>
 
                     {/* Live Store Pill */}
                     {p.liveStoreType === "both" && (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>App Store &amp; Play Live</span>
+                        <span>{t.projects.badges.iosAndroidLive}</span>
                       </span>
                     )}
                     {p.liveStoreType === "appStore" && (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30">
                         <Apple className="w-3 h-3" />
-                        <span>App Store Live</span>
+                        <span>{t.projects.badges.appStoreLive}</span>
                       </span>
                     )}
                     {p.liveStoreType === "googlePlay" && (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30">
                         <Play className="w-2.5 h-2.5 fill-current" />
-                        <span>Google Play Live</span>
+                        <span>{t.projects.badges.googlePlayLive}</span>
                       </span>
                     )}
                   </div>
@@ -434,12 +440,12 @@ const Projects = () => {
                     {p.title}
                   </h3>
                   <div className="text-xs font-semibold text-slate-400 mb-3">
-                    {p.roleSubtitle}
+                    {t.projectsData[p.id]?.role || p.roleSubtitle}
                   </div>
 
                   {/* Description snippet */}
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 mb-6">
-                    {p.summary}
+                    {t.projectsData[p.id]?.summary || p.summary}
                   </p>
 
                   {/* Tech stack badges */}
@@ -467,7 +473,7 @@ const Projects = () => {
                     onClick={() => setSelectedProject(p)}
                     className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-colors group/btn py-1"
                   >
-                    <span>View Case Study</span>
+                    <span>{t.projects.viewCaseStudy}</span>
                     <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
                   </button>
 
@@ -482,7 +488,7 @@ const Projects = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Apple className="w-3 h-3 text-cyan-400" />
-                        <span>iOS</span>
+                        <span>{t.projects.badges.ios}</span>
                       </a>
                     )}
                     {p.playStoreUrl && (
@@ -495,7 +501,7 @@ const Projects = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Play className="w-3 h-3 fill-current" />
-                        <span>Android</span>
+                        <span>{t.projects.badges.android}</span>
                       </a>
                     )}
                     {p.webUrl && !p.appStoreUrl && !p.playStoreUrl && (
@@ -508,7 +514,7 @@ const Projects = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink className="w-3 h-3 text-cyan-400" />
-                        <span>Live</span>
+                        <span>{t.projects.badges.live}</span>
                       </a>
                     )}
                   </div>
@@ -533,7 +539,7 @@ const Projects = () => {
                 <div className="p-6 sm:p-7 border-b border-white/[0.08] flex items-center justify-between bg-white/[0.02]">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 inline-block mb-1">
-                      {selectedProject.badgeType}
+                      {selectedProject.badgeType === "Mobile App" ? t.projects.badges.mobileApp : selectedProject.badgeType}
                     </span>
                     <h3 className="text-2xl font-bold font-heading text-white">
                       {selectedProject.title}
@@ -586,7 +592,7 @@ const Projects = () => {
                             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-cyan-500 border border-white/10 transition-colors"
                           >
                             <Apple className="w-4 h-4" />
-                            <span>Apple App Store</span>
+                            <span>{t.projects.modal.viewAppStore}</span>
                           </a>
                         )}
                         {selectedProject.playStoreUrl && (
@@ -597,7 +603,7 @@ const Projects = () => {
                             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-cyan-500 border border-white/10 transition-colors"
                           >
                             <Play className="w-4 h-4 fill-current" />
-                            <span>Google Play Store</span>
+                            <span>{t.projects.modal.viewPlayStore}</span>
                           </a>
                         )}
                         {selectedProject.webUrl && (
@@ -608,7 +614,7 @@ const Projects = () => {
                             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 transition-colors"
                           >
                             <ExternalLink className="w-4 h-4" />
-                            <span>Landing Page</span>
+                            <span>{t.projects.modal.visitLive}</span>
                           </a>
                         )}
                       </div>
@@ -619,19 +625,19 @@ const Projects = () => {
                   <div className="space-y-4 pt-4 border-t border-white/[0.08]">
                     <div>
                       <h4 className="text-sm font-bold font-heading uppercase tracking-wider text-slate-200 mb-1.5">
-                        The Challenge &amp; Problem
+                        {t.projects.modal.problem}
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                        {selectedProject.problem}
+                        {t.projectsData[selectedProject.id]?.problem || selectedProject.problem}
                       </p>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-bold font-heading uppercase tracking-wider text-cyan-400 mb-1.5">
-                        The Engineering Solution
+                        {t.projects.modal.solution}
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                        {selectedProject.solution}
+                        {t.projectsData[selectedProject.id]?.solution || selectedProject.solution}
                       </p>
                     </div>
                   </div>
@@ -639,10 +645,10 @@ const Projects = () => {
                   {/* Key Highlights */}
                   <div className="pt-4 border-t border-white/[0.08]">
                     <h4 className="text-sm font-bold font-heading uppercase tracking-wider text-slate-200 mb-3">
-                      Architectural Highlights
+                      {t.projects.modal.highlights}
                     </h4>
                     <div className="space-y-2">
-                      {selectedProject.highlights.map((h, hIdx) => (
+                      {(t.projectsData[selectedProject.id]?.highlights || selectedProject.highlights).map((h, hIdx) => (
                         <div key={hIdx} className="flex items-start gap-2.5 text-xs text-slate-300">
                           <Check className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
                           <span>{h}</span>
