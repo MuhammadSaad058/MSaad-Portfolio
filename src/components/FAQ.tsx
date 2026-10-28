@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const FAQ = () => {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -39,13 +41,13 @@ const FAQ = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            09 / Client FAQ
+            {t.faq.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            FREQUENTLY ASKED QUESTIONS
+            {t.faq.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Everything you need to know about working together, timelines, costs, App Store approvals, and code ownership.
+            {t.faq.subtitle}
           </p>
         </div>
 

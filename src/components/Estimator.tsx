@@ -364,13 +364,13 @@ const Estimator = () => {
 
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-[10px] font-bold uppercase tracking-wider text-cyan-300 mb-6">
                 <Sparkles className="w-3 h-3 text-cyan-400" />
-                <span>Real-Time Estimate</span>
+                <span>{t.estimator.realTime}</span>
               </div>
 
               {/* Price Display */}
               <div className="mb-6">
                 <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
-                  Estimated Investment
+                  {t.estimator.investment}
                 </div>
                 <div className="text-4xl sm:text-5xl font-extrabold font-heading text-white tracking-tight">
                   ${calculation.price.toLocaleString()}
@@ -383,7 +383,7 @@ const Estimator = () => {
               {/* Timeline Display */}
               <div className="mb-6 pb-6 border-b border-white/[0.08]">
                 <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
-                  Estimated Timeline
+                  {t.estimator.timeline}
                 </div>
                 <div className="text-2xl font-bold font-heading text-cyan-400">
                   {calculation.weeksMin} to {calculation.weeksMax} Weeks
@@ -418,7 +418,7 @@ const Estimator = () => {
                   className="w-full py-3.5 px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Discuss This Estimate on WhatsApp</span>
+                  <span>{t.estimator.discussWhatsApp}</span>
                 </a>
 
                 <a
@@ -426,7 +426,7 @@ const Estimator = () => {
                   className="w-full py-3 px-4 rounded-xl text-xs font-semibold text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-cyan-500/40 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Send Project Brief via Email</span>
+                  <span>{t.estimator.sendEmail}</span>
                 </a>
               </div>
 

@@ -1,7 +1,9 @@
 import { Download, ExternalLink, Code2, Cpu, Sparkles, MapPin, Mail, Phone, Github, Linkedin, Award, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const AboutSpecialist = () => {
+  const { t } = useLanguage();
   const downloadCV = () => {
     const link = document.createElement("a");
     link.href = "/Muhammad_Saad_CV.pdf";
@@ -46,13 +48,13 @@ const AboutSpecialist = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            06 / Meet The Engineer
+            {t.about.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            DEDICATED SENIOR MOBILE APP SPECIALIST
+            {t.about.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Crafting market-ready cross-platform applications at the intersection of design fidelity, scalable software architecture, and cloud engineering.
+            {t.about.subtitle}
           </p>
         </div>
 
@@ -101,7 +103,7 @@ const AboutSpecialist = () => {
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download Resume</span>
+                <span>{t.about.downloadResume}</span>
               </button>
             </div>
           </div>

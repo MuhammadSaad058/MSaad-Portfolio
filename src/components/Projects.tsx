@@ -94,6 +94,37 @@ const Projects = () => {
       webUrl: "https://talk2learn-app-landing.vercel.app/",
     },
     {
+      id: "medroof",
+      title: "Medroof",
+      roleSubtitle: "Lead Mobile Engineer • Telemedicine & Spa",
+      category: "mobileApp",
+      badgeType: "Mobile App",
+      liveStoreType: "both",
+      iconImage: "/medroof-icon.webp",
+      fullImage: "/medroof-screen.webp",
+      summary:
+        "Comprehensive on-demand telemedicine and wellness mobile application connecting patients with licensed healthcare providers for live Agora WebRTC consultations, digital prescriptions, and on-demand spa and IV hydration treatments.",
+      problem:
+        "Patients struggle with long clinic queues, cumbersome appointment booking, and fragmented records when seeking quick virtual consultations or booking in-person wellness treatments.",
+      solution:
+        "Engineered a secure cross-platform mobile application with low-latency Agora WebRTC video/audio telemedicine consults, HIPAA-ready patient records, interactive spa treatment scheduling, automated reminders, and instant card payments.",
+      metrics: [
+        { label: "Platform", value: "iOS & Android" },
+        { label: "Telemedicine", value: "Agora WebRTC" },
+        { label: "Security", value: "HIPAA-Ready" },
+        { label: "Rating", value: "5.0 ★" },
+      ],
+      highlights: [
+        "High-definition Agora WebRTC video & audio telemedicine consultations with certified physicians",
+        "Secure HIPAA-ready electronic prescriptions, patient medical records, and digital health history",
+        "On-demand spa, IV hydration therapy, and wellness appointment booking with interactive scheduling",
+        "Integrated secure payment checkout, automated appointment reminders, and instant in-app clinician chat",
+      ],
+      techStack: ["React Native", "TypeScript", "Agora WebRTC", "Firebase", "Stripe", "REST APIs"],
+      appStoreUrl: "https://apps.apple.com/es/app/medroof-telemedicine-spa/id6739805332",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.medroof&hl=en",
+    },
+    {
       id: "souvenir-store",
       title: "Souvenir Store",
       roleSubtitle: "Full Stack Mobile Developer • E-Commerce",

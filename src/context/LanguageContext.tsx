@@ -295,6 +295,21 @@ const translations: Record<LanguageCode, Translations> = {
           "Low-latency Riverpod reactive state management with clean GoRouter navigation",
         ],
       },
+      medroof: {
+        role: "Lead Mobile Engineer • Telemedicine & Spa",
+        summary:
+          "Comprehensive on-demand telemedicine and wellness mobile application connecting patients with licensed healthcare providers for live Agora WebRTC consultations, digital prescriptions, and on-demand spa and IV hydration treatments.",
+        problem:
+          "Patients struggle with long clinic queues, cumbersome appointment booking, and fragmented records when seeking quick virtual consultations or booking in-person wellness treatments.",
+        solution:
+          "Engineered a secure cross-platform mobile application with low-latency Agora WebRTC video/audio telemedicine consults, HIPAA-ready patient records, interactive spa treatment scheduling, automated reminders, and instant card payments.",
+        highlights: [
+          "High-definition Agora WebRTC video & audio telemedicine consultations with certified physicians",
+          "Secure HIPAA-ready electronic prescriptions, patient medical records, and digital health history",
+          "On-demand spa, IV hydration therapy, and wellness appointment booking with interactive scheduling",
+          "Integrated secure payment checkout, automated appointment reminders, and instant in-app clinician chat",
+        ],
+      },
       "souvenir-store": {
         role: "Full Stack Mobile Developer • E-Commerce",
         summary:
@@ -555,6 +570,21 @@ const translations: Record<LanguageCode, Translations> = {
           "Authentification sécurisée SSO Google et Apple avec Firebase Auth",
           "Indicateurs de présence en direct, visualiseur audio et modération de salle",
           "Architecture réactive Riverpod ultra-fluide avec navigation GoRouter",
+        ],
+      },
+      medroof: {
+        role: "Ingénieur Mobile Principal • Télémédecine & Bien-être",
+        summary:
+          "Application mobile complète de télémédecine et de bien-être à la demande connectant les patients à des professionnels de santé agréés pour des consultations vidéo Agora WebRTC en direct, des ordonnances numériques et des soins spa et perfusions IV.",
+        problem:
+          "Les patients sont confrontés à de longues files d'attente en clinique et à des dossiers médicaux fragmentés lorsqu'ils recherchent des consultations virtuelles rapides ou réservent des soins de bien-être.",
+        solution:
+          "Développement d'une application mobile multiplateforme sécurisée avec consultations de télémédecine audio/vidéo Agora WebRTC à faible latence, dossiers médicaux conformes HIPAA, planification interactive des soins spa et paiements instantanés.",
+        highlights: [
+          "Consultations de télémédecine vidéo et audio haute définition Agora WebRTC avec des médecins certifiés",
+          "Ordonnances électroniques sécurisées conformes HIPAA et historique de santé numérique des patients",
+          "Réservation à la demande de soins spa, d'hydratation IV et de bien-être avec calendrier interactif",
+          "Paiement numérique sécurisé, rappels de rendez-vous automatiques et messagerie instantanée avec les praticiens",
         ],
       },
       "souvenir-store": {
@@ -819,6 +849,21 @@ const translations: Record<LanguageCode, Translations> = {
           "Gestión de estado reactiva con Riverpod y navegación fluida con GoRouter",
         ],
       },
+      medroof: {
+        role: "Ingeniero Móvil Principal • Telemedicina y Spa",
+        summary:
+          "Aplicación móvil integral de telemedicina y bienestar que conecta a pacientes con médicos certificados para videoconsultas en vivo con Agora WebRTC, recetas electrónicas y tratamientos de spa e hidratación IV.",
+        problem:
+          "Los pacientes sufren largas esperas en clínicas y trámites complejos al buscar consultas médicas virtuales rápidas o reservar tratamientos de bienestar presenciales.",
+        solution:
+          "Desarrollo de una aplicación móvil multiplataforma segura con telemedicina de audio/video de baja latencia con Agora WebRTC, expedientes clínicos protegidos por HIPAA, agenda interactiva de citas de spa y pasarela de pago seguro.",
+        highlights: [
+          "Consultas de telemedicina en video y audio de alta definición con Agora WebRTC con médicos certificados",
+          "Recetas electrónicas seguras compatibles con HIPAA e historial médico digital del paciente",
+          "Reserva de tratamientos de spa, hidratación intravenosa y bienestar bajo demanda con calendario dinámico",
+          "Cobro seguro con tarjeta, recordatorios automáticos de citas y chat directo con el especialista",
+        ],
+      },
       "souvenir-store": {
         role: "Desarrollador Mobile Full Stack • E-Commerce",
         summary:
@@ -1081,6 +1126,21 @@ const translations: Record<LanguageCode, Translations> = {
           "Gerenciamento de estado de alta performance com Riverpod e GoRouter",
         ],
       },
+      medroof: {
+        role: "Engenheiro Mobile Principal • Telemedicina & Spa",
+        summary:
+          "Aplicativo móvel completo de telemedicina e bem-estar que conecta pacientes a médicos credenciados para consultas de vídeo ao vivo via Agora WebRTC, receitas digitais e agendamento de spa e hidratação IV.",
+        problem:
+          "Pacientes enfrentam longas filas em consultórios e registros dispersos ao buscar teleconsultas rápidas ou agendar sessões de bem-estar e terapia IV.",
+        solution:
+          "Engenharia de aplicativo multiplataforma seguro com telemedicina de áudio e vídeo de baixa latência via Agora WebRTC, prontuários compatíveis com HIPAA, agendamento interativo de spa e pagamentos digitais integrados.",
+        highlights: [
+          "Consultas de telemedicina em áudio e vídeo de alta definição via Agora WebRTC com médicos certificados",
+          "Prescrições eletrônicas seguras em conformidade com HIPAA e histórico médico digital",
+          "Agendamento sob demanda de tratamentos de spa, hidratação venosa e estética com calendário interativo",
+          "Pagamento seguro integrado, lembretes automáticos de consultas e chat direto com o médico",
+        ],
+      },
       "souvenir-store": {
         role: "Desenvolvedor Mobile Full Stack • E-Commerce",
         summary:
@@ -1341,6 +1401,21 @@ const translations: Record<LanguageCode, Translations> = {
           "打通 Google 与 Apple 原生 SSO 极速授权与 Firebase Auth 鉴权通道",
           "全链路实时在线状态监测、发言者动效波形与多人房管控制台",
           "Riverpod 极速响应式状态机结合严谨 GoRouter 页面路由流转",
+        ],
+      },
+      medroof: {
+        role: "首席移动端研发工程师 • 远程医疗与健康水疗",
+        summary:
+          "一站式按需远程医疗与健康养生移动应用，连接患者与认证执业医生，支持基于 Agora WebRTC 的高清实时音视频问诊、电子处方开具以及水疗和静脉补液预约。",
+        problem:
+          "患者在寻求快速线上诊疗或预约线下水疗护理时，常面临就诊排队时间漫长、预约流程繁琐及健康档案割裂的痛点。",
+        solution:
+          "研发跨平台高可用移动应用，集成低延迟 Agora WebRTC 音视频问诊流、符合 HIPAA 规范的数字化电子病历系统、动态日程预约日历及安全在线支付体系。",
+        highlights: [
+          "基于 Agora WebRTC 的高清低延迟实时音视频远程医疗会诊系统",
+          "符合 HIPAA 规范的加密电子处方、病历档案与患者数字化健康档案",
+          "按需水疗护理、静脉补液理疗与健康项目的交互式动态日历预约",
+          "集成安全在线支付网关、自动化就诊提醒与实时医患在线即时通讯",
         ],
       },
       "souvenir-store": {

@@ -10,6 +10,20 @@ const TrustTicker = () => {
       color: "text-purple-400 border-purple-500/20 bg-purple-500/5",
     },
     {
+      name: "Quit Puffing",
+      category: "Habit & Dopamine Gamification",
+      icon: "🚭",
+      stores: "Google Play Store",
+      color: "text-amber-400 border-amber-500/20 bg-amber-500/5",
+    },
+    {
+      name: "Medroof",
+      category: "Telemedicine & Wellness Spa",
+      icon: "🩺",
+      stores: "App Store & Play Store",
+      color: "text-teal-400 border-teal-500/20 bg-teal-500/5",
+    },
+    {
       name: "Souvenir Store",
       category: "E-Commerce • Stripe Mobile",
       icon: "🛍️",
@@ -77,7 +91,7 @@ const TrustTicker = () => {
           </div>
           <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>8+ Apps Live in Apple &amp; Google Stores</span>
+            <span>10+ Apps Live in Apple &amp; Google Stores</span>
           </div>
         </div>
       </div>

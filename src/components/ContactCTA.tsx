@@ -8,11 +8,34 @@ const ContactCTA = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "Mobile App MVP",
-    budget: "$2,000 - $4,000",
+    projectType: "MVP Sprint (2-4 wks)",
+    platform: "iOS & Android",
+    budget: "$2,500 - $5,000",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+
+  const projectTypes = [
+    "MVP Sprint (2-4 wks)",
+    "Complete Mobile App",
+    "Agora Audio/Video WebRTC",
+    "App Store Publishing / Rescue",
+    "Dedicated Retainer",
+  ];
+
+  const platforms = [
+    "iOS & Android",
+    "iOS Only",
+    "Android Only",
+    "Mobile + Web",
+  ];
+
+  const budgets = [
+    "< $2,500",
+    "$2,500 - $5,000",
+    "$5,000 - $10,000",
+    "$10,000+",
+  ];
 
   const downloadCV = () => {
     const link = document.createElement("a");
@@ -25,9 +48,9 @@ const ContactCTA = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Project Inquiry from ${formData.name} (${formData.projectType})`);
+    const subject = encodeURIComponent(`Project Inquiry: ${formData.projectType} (${formData.platform}) from ${formData.name}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget Range: ${formData.budget}\n\nProject Brief:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nTarget Platform: ${formData.platform}\nBudget Range: ${formData.budget}\n\nProject Brief:\n${formData.message}`
     );
     window.open(`mailto:msaadi252gb@gmail.com?subject=${subject}&body=${body}`, "_blank");
     setSubmitted(true);
@@ -43,13 +66,13 @@ const ContactCTA = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            Available Now
+            {t.contact.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            LET'S BUILD YOUR APPLICATION
+            {t.contact.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Available for mobile contracts, full MVP development, App Store publishing, and dedicated engineering. Response time under 2 hours.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -181,43 +204,81 @@ const ContactCTA = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Project Type
-                      </label>
-                      <div className="relative">
-                        <select
-                          value={formData.projectType}
-                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                          className="w-full px-4 py-2.5 pr-10 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none cursor-pointer"
-                        >
-                          <option value="Startup MVP Sprint (2-4 Weeks)">Startup MVP Sprint (2-4 Weeks)</option>
-                          <option value="Complete Production Mobile App">Complete Production Mobile App</option>
-                          <option value="Agora Audio/Video WebRTC App">Agora Audio/Video WebRTC App</option>
-                          <option value="App Store Code Rescue / Publishing">App Store Code Rescue / Publishing</option>
-                          <option value="Dedicated Monthly Retainer">Dedicated Monthly Retainer</option>
-                        </select>
-                        <ChevronDown className="w-4 h-4 text-cyan-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                      </div>
+                  {/* 1. What do you need built? */}
+                  <div className="space-y-2">
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 font-semibold">
+                      1. What do you need built?
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {projectTypes.map((type) => {
+                        const active = formData.projectType === type;
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, projectType: type })}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                              active
+                                ? "bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 text-white font-semibold shadow-md shadow-cyan-500/25 border border-cyan-400/50"
+                                : "bg-[#080d19] text-slate-400 hover:text-white border border-white/10 hover:border-cyan-500/30"
+                            }`}
+                          >
+                            {type}
+                          </button>
+                        );
+                      })}
                     </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Estimated Budget
-                      </label>
-                      <div className="relative">
-                        <select
-                          value={formData.budget}
-                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="w-full px-4 py-2.5 pr-10 rounded-xl bg-[#080d19] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none cursor-pointer"
-                        >
-                          <option value="$1,500 - $2,500">$1,500 - $2,500</option>
-                          <option value="$2,500 - $4,500">$2,500 - $4,500</option>
-                          <option value="$4,500 - $8,000">$4,500 - $8,000</option>
-                          <option value="$8,000+">$8,000+</option>
-                        </select>
-                        <ChevronDown className="w-4 h-4 text-cyan-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                      </div>
+                  </div>
+
+                  {/* 2. Target Platform */}
+                  <div className="space-y-2">
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 font-semibold">
+                      2. Target Platform
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {platforms.map((plat) => {
+                        const active = formData.platform === plat;
+                        return (
+                          <button
+                            key={plat}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, platform: plat })}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                              active
+                                ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold shadow-sm border border-cyan-400/40"
+                                : "bg-[#080d19] text-slate-400 hover:text-white border border-white/10 hover:border-cyan-500/30"
+                            }`}
+                          >
+                            {plat}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 3. Approximate Budget */}
+                  <div className="space-y-2">
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 font-semibold">
+                      3. Approximate Budget
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {budgets.map((b) => {
+                        const active = formData.budget === b;
+                        return (
+                          <button
+                            key={b}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, budget: b })}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                              active
+                                ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold shadow-sm border border-cyan-400/40"
+                                : "bg-[#080d19] text-slate-400 hover:text-white border border-white/10 hover:border-cyan-500/30"
+                            }`}
+                          >
+                            {b}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -239,7 +300,7 @@ const ContactCTA = () => {
                     type="submit"
                     className="w-full py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all flex items-center justify-center gap-2 hover:scale-[1.01]"
                   >
-                    <span>Send Project Inquiry</span>
+                    <span>{t.contact.sendBrief}</span>
                     <Send className="w-4 h-4" />
                   </button>
                 </form>

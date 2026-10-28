@@ -1,7 +1,9 @@
 import { Check, ArrowRight, ShieldCheck, Clock, Zap, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const PricingProcess = () => {
+  const { t } = useLanguage();
   const scrollToContact = () => {
     const section = document.getElementById("contact");
     if (section) {
@@ -103,13 +105,13 @@ const PricingProcess = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
-            05 / Engagement Models
+            {t.pricing.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white tracking-tight mb-4">
-            TRANSPARENT FIXED PRICING
+            {t.pricing.title}
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Simple, predictable ways to collaborate. No surprise invoices, no bloated agency markups — just direct senior engineering with weekly interactive test builds.
+            {t.pricing.subtitle}
           </p>
 
           {/* Quick Unblock Pill */}
@@ -120,7 +122,7 @@ const PricingProcess = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 px-4 py-2 rounded-full transition-colors"
             >
-              <span>Need quick unblocking? Book consultation on WhatsApp →</span>
+              <span>{t.pricing.unblockPill}</span>
             </a>
           </div>
         </div>
