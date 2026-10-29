@@ -8,15 +8,15 @@ const Footer = () => {
   };
 
   const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "Services", href: "#services" },
-    { label: "Blueprints", href: "#blueprints" },
-    { label: "Projects", href: "#projects" },
-    { label: "Estimator", href: "#estimator" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Experience", href: "#experience" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#hero" },
+    { label: "Services", href: "/#services" },
+    { label: "Blueprints", href: "/#blueprints" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Estimator", href: "/#estimator" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "Experience", href: "/#experience" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -39,6 +39,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
                 title="GitHub"
+                aria-label="Muhammad Saad on GitHub"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -48,6 +49,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
                 title="LinkedIn"
+                aria-label="Muhammad Saad on LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -57,6 +59,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-emerald-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
                 title="WhatsApp"
+                aria-label="Contact Muhammad Saad on WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
               </a>
@@ -64,6 +67,7 @@ const Footer = () => {
                 href="mailto:msaadi252gb@gmail.com"
                 className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
                 title="Email"
+                aria-label="Send email to Muhammad Saad"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -100,7 +104,8 @@ const Footer = () => {
             </div>
             <button
               onClick={scrollToTop}
-              className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer"
+              aria-label="Scroll back to top of page"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5" />

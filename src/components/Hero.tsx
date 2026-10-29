@@ -381,7 +381,9 @@ const Hero = () => {
                       >
                         <img
                           src={activeProject.screen}
-                          alt={`${activeProject.name} mobile app UI`}
+                          alt={`${activeProject.name} mobile application interface showcase`}
+                          width={310}
+                          height={647}
                           className="w-full h-full object-cover object-top"
                           loading="eager"
                         />

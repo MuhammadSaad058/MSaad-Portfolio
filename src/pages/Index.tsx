@@ -55,7 +55,7 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    (window as any).currentActiveSection = activeSection;
+    (window as unknown as { currentActiveSection: string }).currentActiveSection = activeSection;
     window.dispatchEvent(
       new CustomEvent("activeSectionChange", { detail: activeSection })
     );

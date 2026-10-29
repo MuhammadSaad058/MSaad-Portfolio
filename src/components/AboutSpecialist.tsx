@@ -1,10 +1,12 @@
 import { Download, ExternalLink, Code2, Cpu, Sparkles, MapPin, Mail, Phone, Github, Linkedin, Award, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { trackEvent } from "@/lib/analytics";
 
 const AboutSpecialist = () => {
   const { t } = useLanguage();
   const downloadCV = () => {
+    trackEvent("resume_download", { source: "about_specialist" });
     const link = document.createElement("a");
     link.href = "/Muhammad_Saad_CV.pdf";
     link.download = "Muhammad_Saad_CV.pdf";
@@ -65,9 +67,12 @@ const AboutSpecialist = () => {
             <div className="relative w-64 sm:w-72 aspect-square rounded-3xl p-1.5 bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 shadow-[0_0_50px_rgba(6,182,212,0.25)] mb-6">
               <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#0c1222] relative group">
                 <img
-                  src="/ProfilePic.png"
-                  alt="Muhammad Saad"
+                  src="/ProfilePic.webp"
+                  alt="Muhammad Saad — Senior React Native and Mobile Application Developer"
+                  width={288}
+                  height={288}
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-5">
                   <div>

@@ -160,10 +160,10 @@ const translations: Record<LanguageCode, Translations> = {
     },
     hero: {
       badge: "Available for New Mobile Projects & Sprints",
-      headlinePart1: "Hire Senior React Native & Flutter App Developer.",
+      headlinePart1: "React Native & Mobile App Developer.",
       headlinePart2: "Engineered for 60FPS Velocity.",
       subheadline:
-        "Architecting market-ready iOS & Android mobile applications and startup MVPs. From Figma UI to App Store & Google Play approval in 30 days — with buttery 60fps animations, Firebase/Supabase cloud backends, and zero agency overhead.",
+        "Specializing in React Native, TypeScript, JavaScript, and cross-platform mobile application development. Architecting market-ready iOS & Android apps and startup MVPs with buttery 60fps animations, Firebase/Supabase cloud backends, and zero agency overhead.",
       exploreApps: "Explore Shipped Apps",
       estimateCost: "Estimate Project Cost",
       appsShipped: "Production Apps",

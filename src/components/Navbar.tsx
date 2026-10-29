@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
+import { trackEvent } from "@/lib/analytics";
 
 const Navbar = () => {
   const { t } = useLanguage();
@@ -24,8 +25,8 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const handleActiveSectionChange = (event: any) => {
-      setActiveSection(event.detail);
+    const handleActiveSectionChange = (event: Event) => {
+      setActiveSection((event as CustomEvent<string>).detail);
     };
     window.addEventListener("activeSectionChange", handleActiveSectionChange);
     return () =>
@@ -48,8 +49,11 @@ const Navbar = () => {
     e: React.MouseEvent<HTMLAnchorElement>,
     sectionId: string
   ) => {
-    e.preventDefault();
     setIsMobileMenuOpen(false);
+    if (window.location.pathname !== "/") {
+      return;
+    }
+    e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,6 +61,7 @@ const Navbar = () => {
   };
 
   const downloadCV = () => {
+    trackEvent("resume_download", { source: "navbar" });
     const link = document.createElement("a");
     link.href = "/Muhammad_Saad_CV.pdf";
     link.download = "Muhammad_Saad_CV.pdf";
@@ -76,9 +81,10 @@ const Navbar = () => {
         >
           {/* ── Left: Branding + Status Pill ── */}
           <a
-            href="#hero"
+            href="/#hero"
             onClick={(e) => handleNavClick(e, "hero")}
             className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group min-w-0"
+            aria-label="Muhammad Saad Portfolio Home"
           >
             {/* Glowing radar dot */}
             <div className="relative flex h-3 w-3 items-center justify-center shrink-0">
@@ -108,7 +114,7 @@ const Navbar = () => {
               return (
                 <a
                   key={item.label}
-                  href={`#${item.href}`}
+                  href={`/#${item.href}`}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
                     "relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-colors duration-200 whitespace-nowrap",
@@ -143,6 +149,7 @@ const Navbar = () => {
               href="https://wa.me/923346664252?text=Hi%20Saad,%20I%20would%20like%20to%20order%20an%20app%20project"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("contact_whatsapp", { source: "navbar_order_app" })}
               className="inline-flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-white bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105 whitespace-nowrap shrink-0"
             >
               <span className="hidden sm:inline">{t.nav.orderApp}</span>
