@@ -30,7 +30,7 @@ const Footer = () => {
               Muhammad Saad
             </span>
             <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
-              Senior React Native &amp; Flutter Mobile App Developer specializing in 60fps cross-platform engineering, Agora WebRTC audio/video, and startup MVP delivery within 30 days.
+              Software Engineer and Full-Stack Developer specializing in web applications (React, Next.js), cross-platform mobile apps (React Native, Flutter), and scalable cloud backends.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
@@ -120,13 +120,13 @@ const Footer = () => {
             © {currentYear} Muhammad Saad. All rights reserved.
           </div>
           <div className="flex items-center gap-3">
+            <span>React &amp; Next.js</span>
+            <span>•</span>
             <span>React Native</span>
             <span>•</span>
             <span>Flutter</span>
             <span>•</span>
-            <span>Agora WebRTC</span>
-            <span>•</span>
-            <span>Firebase &amp; Supabase</span>
+            <span>Cloud &amp; AI</span>
           </div>
         </div>
       </div>

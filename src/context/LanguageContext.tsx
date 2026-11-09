@@ -159,14 +159,14 @@ const translations: Record<LanguageCode, Translations> = {
       resume: "Resume",
     },
     hero: {
-      badge: "Available for New Mobile Projects & Sprints",
-      headlinePart1: "React Native & Mobile App Developer.",
-      headlinePart2: "Engineered for 60FPS Velocity.",
+      badge: "Available for New Projects & Product Sprints",
+      headlinePart1: "Software Engineer & Full-Stack Developer.",
+      headlinePart2: "Building Web, Mobile & AI Solutions.",
       subheadline:
-        "Specializing in React Native, TypeScript, JavaScript, and cross-platform mobile application development. Architecting market-ready iOS & Android apps and startup MVPs with buttery 60fps animations, Firebase/Supabase cloud backends, and zero agency overhead.",
+        "Designing and engineering end-to-end digital products — from high-performance web applications and dashboards (React.js, Next.js) to cross-platform mobile apps (React Native, Flutter) and scalable cloud backends with AI-assisted workflows.",
       exploreApps: "Explore Shipped Apps",
       estimateCost: "Estimate Project Cost",
-      appsShipped: "Production Apps",
+      appsShipped: "Production Products",
       experience: "Years Experience",
       clientRating: "Client Rating",
       storePass: "Store Pass Rate",
@@ -243,10 +243,10 @@ const translations: Record<LanguageCode, Translations> = {
       unblockPill: "Need quick unblocking? Book consultation on WhatsApp →",
     },
     about: {
-      badge: "06 / Engineering Profile",
-      title: "ABOUT MUHAMMAD SAAD",
+      badge: "01 / Engineering Profile",
+      title: "SOFTWARE ENGINEER & FULL-STACK BUILDER",
       subtitle:
-        "Senior Cross-Platform Mobile Engineer with 10+ shipped production applications across iOS & Android.",
+        "Designing, building, and deploying scalable web, mobile, and AI solutions engineered for real-world impact.",
       downloadResume: "Download Full CV (.PDF)",
     },
     faq: {
@@ -436,14 +436,14 @@ const translations: Record<LanguageCode, Translations> = {
       resume: "Mon CV",
     },
     hero: {
-      badge: "Disponible pour Projets Mobiles & Sprints",
-      headlinePart1: "Développeur Senior React Native & Flutter.",
-      headlinePart2: "Conçu pour une Vélocité à 60 FPS.",
+      badge: "Disponible pour Projets Web, Mobiles & Sprints",
+      headlinePart1: "Ingénieur Logiciel & Développeur Full-Stack.",
+      headlinePart2: "Solutions Web, Mobiles & IA Performantes.",
       subheadline:
-        "Conception d'applications mobiles iOS & Android prêtes pour le marché et de MVP pour startups. Du design Figma à la publication validée sur l'App Store & Google Play en 30 jours — avec animations fluides à 60 fps, backends cloud Firebase/Supabase et zéro intermédiaire.",
+        "Conception de produits numériques de bout en bout — applications web haute performance (React.js, Next.js), applications mobiles multiplateformes (React Native, Flutter) et architectures cloud évolutives avec intégrations IA.",
       exploreApps: "Découvrir les Projets",
-      estimateCost: "Estimer le Coût de l'App",
-      appsShipped: "Applications Livrées",
+      estimateCost: "Estimer le Coût du Projet",
+      appsShipped: "Produits en Production",
       experience: "Années d'Expérience",
       clientRating: "Avis Clients",
       storePass: "Taux de Validation Store",
@@ -520,10 +520,10 @@ const translations: Record<LanguageCode, Translations> = {
       unblockPill: "Besoin d'un déblocage rapide ? Réserver sur WhatsApp →",
     },
     about: {
-      badge: "06 / Profil de l'Ingénieur",
-      title: "À PROPOS DE MUHAMMAD SAAD",
+      badge: "01 / Profil de l'Ingénieur",
+      title: "INGÉNIEUR LOGICIEL & FULL-STACK",
       subtitle:
-        "Ingénieur Mobile Senior spécialisé dans les applications multiplateformes iOS & Android avec plus de 10 applications publiées avec succès.",
+        "Conception de solutions web, mobiles et IA conçues pour un impact concret avec plus de 11 applications en production.",
       downloadResume: "Télécharger le CV (.PDF)",
     },
     faq: {
@@ -713,14 +713,14 @@ const translations: Record<LanguageCode, Translations> = {
       resume: "Currículum",
     },
     hero: {
-      badge: "Disponible para Nuevos Proyectos y Sprints Móviles",
-      headlinePart1: "Desarrollador Senior React Native & Flutter.",
-      headlinePart2: "Diseñado para una Velocidad de 60 FPS.",
+      badge: "Disponible para Proyectos Web, Móviles & Sprints",
+      headlinePart1: "Ingeniero de Software y Desarrollador Full-Stack.",
+      headlinePart2: "Soluciones Web, Móviles y de IA Escalables.",
       subheadline:
-        "Arquitectura de aplicaciones móviles para iOS y Android listas para el mercado y MVP para startups. Desde el diseño en Figma hasta la publicación en App Store y Google Play en 30 días — con animaciones a 60 fps, backends Firebase/Supabase y sin costes de agencia.",
+        "Diseño e ingeniería de productos digitales integrales — desde aplicaciones web y paneles de control (React.js, Next.js) hasta aplicaciones móviles multiplataforma (React Native, Flutter) e integraciones inteligentes de IA.",
       exploreApps: "Ver Proyectos Publicados",
       estimateCost: "Calcular Coste del Proyecto",
-      appsShipped: "Apps en Producción",
+      appsShipped: "Productos en Producción",
       experience: "Años de Experiencia",
       clientRating: "Calificación de Clientes",
       storePass: "Aprobación en Tiendas",
@@ -797,10 +797,10 @@ const translations: Record<LanguageCode, Translations> = {
       unblockPill: "¿Necesita un desbloqueo técnico urgente? Consulte por WhatsApp →",
     },
     about: {
-      badge: "06 / Perfil Profesional",
-      title: "ACERCA DE MUHAMMAD SAAD",
+      badge: "01 / Perfil Profesional",
+      title: "INGENIERO DE SOFTWARE Y FULL-STACK",
       subtitle:
-        "Ingeniero Móvil Senior especializado en arquitecturas React Native y Flutter con más de 10 aplicaciones publicadas en producción.",
+        "Creación de soluciones web, móviles y de IA diseñadas para un impacto real con más de 11 aplicaciones en producción.",
       downloadResume: "Descargar CV Completo (.PDF)",
     },
     faq: {
@@ -990,14 +990,14 @@ const translations: Record<LanguageCode, Translations> = {
       resume: "Currículo",
     },
     hero: {
-      badge: "Disponível para Novos Projetos Mobile & Sprints",
-      headlinePart1: "Desenvolvedor Sênior React Native & Flutter.",
-      headlinePart2: "Projetado para Fluidez a 60 FPS.",
+      badge: "Disponível para Novos Projetos Web, Mobile & Sprints",
+      headlinePart1: "Engenheiro de Software & Desenvolvedor Full-Stack.",
+      headlinePart2: "Soluções Web, Mobile e IA de Alto Impacto.",
       subheadline:
-        "Arquitetura de aplicativos móveis iOS e Android prontos para o mercado e MVPs para startups. Do design no Figma à publicação aprovada na App Store e Google Play em 30 dias — com animações a 60 fps, backends Firebase/Supabase e sem custos de agência.",
+        "Desenvolvimento de ponta a ponta de produtos digitais — de aplicações web e dashboards de alta performance (React.js, Next.js) a aplicativos móveis multiplataforma (React Native, Flutter) e integrações inteligentes com IA.",
       exploreApps: "Ver Projetos Lançados",
       estimateCost: "Calcular Custo do App",
-      appsShipped: "Apps em Produção",
+      appsShipped: "Produtos em Produção",
       experience: "Anos de Experiência",
       clientRating: "Avaliação dos Clientes",
       storePass: "Aprovação nas Lojas",
@@ -1074,10 +1074,10 @@ const translations: Record<LanguageCode, Translations> = {
       unblockPill: "Precisa de suporte urgente? Fale pelo WhatsApp →",
     },
     about: {
-      badge: "06 / Perfil Profissional",
-      title: "SOBRE MUHAMMAD SAAD",
+      badge: "01 / Perfil Profissional",
+      title: "ENGENHEIRO DE SOFTWARE & FULL-STACK",
       subtitle:
-        "Engenheiro Mobile Sênior especialista em soluções multiplataforma com mais de 10 aplicativos lançados em produção para iOS e Android.",
+        "Construindo soluções web, mobile e IA projetadas para impacto real com mais de 11 aplicações em produção.",
       downloadResume: "Baixar Currículo (.PDF)",
     },
     faq: {
@@ -1267,15 +1267,15 @@ const translations: Record<LanguageCode, Translations> = {
       resume: "个人履历",
     },
     hero: {
-      badge: "当前开放承接全新移动端 App 研发与 Sprint 冲刺",
-      headlinePart1: "雇佣资深 React Native & Flutter 跨端移动应用全栈工程师。",
-      headlinePart2: "极致 60FPS 流畅体验。",
+      badge: "开放承接全新 Web、移动端与 AI 产品研发",
+      headlinePart1: "全栈软件工程师 & 数字化产品架构师。",
+      headlinePart2: "交付高性能 Web、移动端与 AI 解决方案。",
       subheadline:
-        "为初创公司与商业团队架构高成熟度 iOS & Android 双端应用及商业 MVP。从 Figma 原型到 30 天内通过 App Store 与 Google Play 官方上架审核 — 搭载满帧 60fps 原生手势微动效、Firebase/Supabase 云端高可用架构，杜绝外包中介溢价。",
+        "专注于端到端数字化产品工程研发 — 从高并发 Web 应用与管理后台 (React.js, Next.js) 到跨端移动应用 (React Native, Flutter) 与前沿 AI 智能工作流，助力初创公司与企业实现业务突破。",
       exploreApps: "浏览已上线应用",
       estimateCost: "在线测算项目成本",
-      appsShipped: "已上线商业应用",
-      experience: "专业移动端开发年限",
+      appsShipped: "已交付商业产品",
+      experience: "专业软件工程年限",
       clientRating: "全平台客户五星好评",
       storePass: "应用商店过审率",
       tabs: {
@@ -1351,10 +1351,10 @@ const translations: Record<LanguageCode, Translations> = {
       unblockPill: "需要紧急技术攻坚与疑难问题排查？即刻预约技术咨询 →",
     },
     about: {
-      badge: "06 / 工程师档案",
-      title: "关于 MUHAMMAD SAAD",
+      badge: "01 / 工程师档案",
+      title: "全栈软件工程师 & 数字化方案构建者",
       subtitle:
-        "资深全栈跨端移动架构师，拥有 10+ 款在 iOS 和 Android 官方应用商店成功上线运营的高并发商业产品。",
+        "打造具备真实业务影响力的 Web、移动端与 AI 解决方案，已成功交付上线 11+ 款商业化生产级产品。",
       downloadResume: "下载完整简历 (.PDF)",
     },
     faq: {

@@ -157,8 +157,8 @@ const Hero = () => {
   };
 
   const stats = [
-    { value: "10+", label: t.hero.appsShipped, sub: "Live on Stores" },
-    { value: "3+", label: t.hero.experience, sub: "React Native & Flutter" },
+    { value: "11+", label: t.hero.appsShipped, sub: "Web & Mobile Products" },
+    { value: "2+", label: t.hero.experience, sub: "Full-Stack & Mobile" },
     { value: "5.0", label: t.hero.clientRating, sub: "Based on 5-Star Reviews" },
     { value: "100%", label: t.hero.storePass, sub: "Zero Rejections" },
   ];
@@ -214,11 +214,11 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-cyan-300">React Native</span>
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-blue-300">Flutter &amp; Dart</span>
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-purple-300">Agora WebRTC</span>
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-amber-300">Firebase &amp; Supabase</span>
-              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-emerald-300">60 FPS Reanimated</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-cyan-300">Full-Stack Web (React &amp; Next.js)</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-blue-300">Cross-Platform Mobile</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-purple-300">React Native &amp; Flutter</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-amber-300">Cloud APIs &amp; Firebase</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-emerald-300">AI-Assisted Workflows</span>
             </motion.div>
 
             {/* CTA Buttons */}

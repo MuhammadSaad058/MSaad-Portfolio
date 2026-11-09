@@ -1,10 +1,11 @@
-import { Download, ExternalLink, Code2, Cpu, Sparkles, MapPin, Mail, Phone, Github, Linkedin, Award, GraduationCap } from "lucide-react";
+import { Download, ExternalLink, Code2, Cpu, Sparkles, MapPin, Mail, Phone, Github, Linkedin, Award, GraduationCap, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { trackEvent } from "@/lib/analytics";
 
 const AboutSpecialist = () => {
   const { t } = useLanguage();
+
   const downloadCV = () => {
     trackEvent("resume_download", { source: "about_specialist" });
     const link = document.createElement("a");
@@ -15,40 +16,51 @@ const AboutSpecialist = () => {
     document.body.removeChild(link);
   };
 
+  const competencies = [
+    "Full-Stack Web (React & Next.js)",
+    "Cross-Platform Mobile (iOS & Android)",
+    "AI Solutions & Agentic Workflows",
+    "MVP & SaaS Sprints (30 Days)",
+    "Software Architecture & REST APIs",
+    "Database Modeling (SQL & NoSQL)",
+    "Cloud Backends & Cloud Functions",
+    "Real-Time Systems & WebRTC / Sockets",
+  ];
+
   const techCategories = [
     {
-      name: "Mobile Frameworks",
-      skills: ["React Native", "Flutter", "Expo", "Reanimated 3", "React Navigation", "GoRouter"],
+      name: "Web Engineering",
+      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "HTML5 / CSS3", "Responsive UI"],
       color: "border-cyan-500/30 text-cyan-300 bg-cyan-500/5",
     },
     {
-      name: "Programming Languages",
-      skills: ["TypeScript", "JavaScript (ES6+)", "Dart", "C++", "Python", "SQL"],
+      name: "Cross-Platform Mobile",
+      skills: ["React Native", "Flutter", "Expo", "Reanimated 3", "React Navigation", "GoRouter"],
       color: "border-blue-500/30 text-blue-300 bg-blue-500/5",
     },
     {
-      name: "State Management",
+      name: "Backend & Cloud Databases",
+      skills: ["Firebase Firestore", "Supabase", "Node.js REST APIs", "SQL / PostgreSQL", "MongoDB", "Agora WebRTC SFU"],
+      color: "border-emerald-500/30 text-emerald-300 bg-emerald-500/5",
+    },
+    {
+      name: "State Management & Architecture",
       skills: ["Redux Toolkit", "Zustand", "Riverpod", "BLoC", "Context API", "TanStack Query"],
       color: "border-purple-500/30 text-purple-300 bg-purple-500/5",
     },
     {
-      name: "Backend & Databases",
-      skills: ["Firebase Firestore", "Supabase", "Node.js REST APIs", "SQLite", "MongoDB", "Agora WebRTC SFU"],
-      color: "border-emerald-500/30 text-emerald-300 bg-emerald-500/5",
-    },
-    {
-      name: "Tools & Deployment",
-      skills: ["App Store Connect", "Google Play Console", "TestFlight", "Git & GitHub", "Xcode", "Android Studio", "Stripe API"],
+      name: "AI & Modern Tooling",
+      skills: ["Cursor", "Google Antigravity", "GitHub Copilot", "App Store Connect", "Google Play Console", "TestFlight & CI/CD"],
       color: "border-amber-500/30 text-amber-300 bg-amber-500/5",
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative bg-transparent border-t border-white/[0.06]">
+    <section id="about" className="py-20 lg:py-24 relative bg-transparent border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-4">
             {t.about.badge}
           </div>
@@ -60,101 +72,137 @@ const AboutSpecialist = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-          
-          {/* Left Column: Photo Card & Quick Links (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative w-64 sm:w-72 aspect-square rounded-3xl p-1.5 bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 shadow-[0_0_50px_rgba(6,182,212,0.25)] mb-6">
-              <div className="w-full h-full rounded-[22px] overflow-hidden bg-[#0c1222] relative group">
-                <img
-                  src="/ProfilePic.webp"
-                  alt="Muhammad Saad — Senior React Native and Mobile Application Developer"
-                  width={288}
-                  height={288}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-5">
-                  <div>
-                    <div className="text-lg font-bold font-heading text-white">Muhammad Saad</div>
-                    <div className="text-xs text-cyan-400 font-semibold">Mobile App Developer @ Mubbits</div>
+        {/* ── Main Detail Profile Card (Matching Reference Layout) ── */}
+        <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-[#0c1222]/85 backdrop-blur-xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)] mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            
+            {/* Left Column: Quote, Bio & Competencies (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
+              
+              {/* Top Quote */}
+              <blockquote className="text-xl sm:text-2xl font-bold font-heading text-white tracking-tight leading-snug mb-6 border-l-2 border-cyan-400 pl-4 sm:pl-5">
+                &ldquo;I bridge the gap between ambitious product ideas and robust, scalable digital reality — building web, mobile, and AI solutions engineered for real-world impact.&rdquo;
+              </blockquote>
+
+              {/* Body Narrative */}
+              <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                <p>
+                  <strong className="text-white font-semibold">Muhammad Saad</strong> is a Software Engineer, Full-Stack Developer, and Mobile &amp; AI Solutions Builder with a Computer Science and Software Engineering background. He specializes in designing and engineering end-to-end digital products — from high-performance web applications and dashboards (React.js, Next.js) to cross-platform mobile apps (React Native, Flutter) and intelligent AI integrations.
+                </p>
+                <p className="text-slate-400">
+                  With hands-on experience building applications from scratch and delivering 11+ production apps, Saad architects resilient backend APIs, structures optimized databases (SQL, Firebase, Supabase), implements third-party services, and deploys production systems. He combines software engineering fundamentals, modern development technologies, and AI-assisted workflows (Cursor, Google Antigravity, GitHub Copilot) to deliver practical, maintainable, and high-converting digital products.
+                </p>
+              </div>
+
+              {/* Core Engineering Competencies */}
+              <div>
+                <span className="text-[11px] font-bold font-mono tracking-wider text-cyan-400 uppercase mb-4 block">
+                  CORE ENGINEERING COMPETENCIES:
+                </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {competencies.map((comp, idx) => (
+                    <div
+                      key={idx}
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#111827]/90 border border-cyan-500/25 text-slate-200 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-colors"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span>{comp}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Column: Photo Card, Info Rows & Action Links (5 cols) */}
+            <div className="lg:col-span-5 space-y-4">
+              
+              {/* Photo Card with Overlay */}
+              <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#070a13] relative group shadow-2xl">
+                <div className="w-full aspect-[4/5] overflow-hidden relative">
+                  <img
+                    src="/ProfilePic.webp"
+                    alt="Muhammad Saad — Software Engineer &amp; Full-Stack Developer"
+                    width={500}
+                    height={625}
+                    className="w-full h-full object-cover object-[center_12%] transition-transform duration-500 group-hover:scale-102"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#070a13] via-[#070a13]/80 to-transparent p-5 pt-16">
+                    <div className="text-lg sm:text-xl font-bold font-heading text-white tracking-tight">
+                      Muhammad Saad
+                    </div>
+                    <div className="text-xs text-cyan-400 font-semibold mt-1">
+                      Software Engineer | Full-Stack &amp; Mobile Developer
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Quick Contact & Links */}
-            <div className="flex flex-wrap justify-center gap-3">
-              <a
-                href="https://github.com/MuhammadSaad058"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
-                title="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/muhammad-saad-5b2486204"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500 text-slate-300 hover:text-white border border-white/10 transition-colors"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
+              {/* Info Rows */}
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#0c1222]/90 border border-white/[0.08] text-xs">
+                  <span className="text-slate-400 font-medium">Location</span>
+                  <span className="text-slate-200 font-semibold flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span>Islamabad / Lahore, PK</span>
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#0c1222]/90 border border-white/[0.08] text-xs">
+                  <span className="text-slate-400 font-medium">Education</span>
+                  <span className="text-slate-200 font-semibold flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <span>BSc Software Engineering (COMSATS)</span>
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#0c1222]/90 border border-white/[0.08] text-xs">
+                  <span className="text-slate-400 font-medium">Status</span>
+                  <span className="text-emerald-400 font-semibold flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+                    <span>Available for Projects &amp; Sprints</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <a
+                  href="https://github.com/MuhammadSaad058"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] text-slate-300 hover:text-white border border-white/10 hover:border-cyan-500/40 text-xs font-semibold transition-all"
+                >
+                  <Github className="w-4 h-4 text-slate-300" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/muhammad-saad-5b2486204"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] text-slate-300 hover:text-white border border-white/10 hover:border-cyan-500/40 text-xs font-semibold transition-all"
+                >
+                  <Linkedin className="w-4 h-4 text-cyan-400" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+
               <button
                 onClick={downloadCV}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 shadow-[0_0_20px_rgba(6,182,212,0.25)] transition-all cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{t.about.downloadResume}</span>
               </button>
+
             </div>
+
           </div>
-
-          {/* Right Column: Bio & Core Philosophy (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-              <p>
-                I'm <strong className="text-white font-semibold">Muhammad Saad</strong>, a passionate Mobile Application Software Engineer with <strong className="text-cyan-400">2+ years of professional experience</strong> engineering high-performance mobile applications for startups and enterprise clients.
-              </p>
-              <p className="text-slate-400">
-                Holding a <strong className="text-white">BS in Software Engineering from COMSATS University Islamabad</strong>, I bridge the gap between Figma design systems and production-grade mobile engineering. My apps deliver native 60fps velocity, sub-second API roundtrips, and zero-compromise security across both iOS and Android.
-              </p>
-              <p className="text-slate-400">
-                I specialize in real-time mobile architectures — from live Agora WebRTC audio/video streaming in <strong className="text-white">Talk2Learn</strong>, to automotive job dispatch engines in <strong className="text-white">ProperMech</strong>, to e-commerce checkout pipelines in <strong className="text-white">Souvenir Store</strong> and <strong className="text-white">SavorConnect</strong>.
-              </p>
-            </div>
-
-            {/* Key Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">
-              <div className="p-4 rounded-xl bg-[#0c1222]/60 border border-white/[0.06]">
-                <div className="flex items-center gap-2 text-cyan-400 font-bold font-heading text-sm mb-1">
-                  <Award className="w-4 h-4" />
-                  <span>End-to-End Delivery</span>
-                </div>
-                <div className="text-xs text-slate-400">
-                  From initial wireframes and schema design to TestFlight betas and final App Store approvals.
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#0c1222]/60 border border-white/[0.06]">
-                <div className="flex items-center gap-2 text-purple-400 font-bold font-heading text-sm mb-1">
-                  <GraduationCap className="w-4 h-4" />
-                  <span>Computer Science Rigor</span>
-                </div>
-                <div className="text-xs text-slate-400">
-                  Clean architecture, design patterns, robust error boundaries, and defensive memory profiling.
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* ── Interactive Tech Stack Matrix ── */}
-        <div className="pt-12 border-t border-white/[0.08]">
+        <div className="pt-4">
           <div className="text-center max-w-xl mx-auto mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-1 block">
               Technical Arsenal
@@ -195,4 +243,3 @@ const AboutSpecialist = () => {
 };
 
 export default AboutSpecialist;
-

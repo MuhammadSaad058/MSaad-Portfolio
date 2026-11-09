@@ -37,11 +37,11 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
+    { label: t.nav.about, href: "about" },
     { label: t.nav.projects, href: "projects" },
     { label: t.nav.services, href: "services" },
     { label: t.nav.blueprints, href: "blueprints" },
     { label: t.nav.pricing, href: "pricing" },
-    { label: t.nav.about, href: "about" },
     { label: t.nav.contact, href: "contact" },
   ];
 
@@ -101,9 +101,6 @@ const Navbar = () => {
                   {t.nav.availableForHire}
                 </span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium tracking-tight hidden xl:block whitespace-nowrap">
-                React Native &amp; Flutter Specialist
-              </span>
             </div>
           </a>
 

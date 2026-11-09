@@ -23,13 +23,13 @@ const Index = () => {
     const handleScroll = () => {
       const sections = [
         "hero",
+        "about",
         "services",
         "why-me",
         "blueprints",
         "projects",
         "estimator",
         "pricing",
-        "about",
         "experience",
         "reviews",
         "faq",
@@ -64,6 +64,7 @@ const Index = () => {
   return (
     <div className="scroll-smooth bg-transparent text-slate-100 min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-200">
       <Hero />
+      <AboutSpecialist />
       <TrustTicker />
       <Services />
       <WhyMe />
@@ -72,7 +73,6 @@ const Index = () => {
       <Projects />
       <Estimator />
       <PricingProcess />
-      <AboutSpecialist />
       <EngineeringJourney />
       <Reviews />
       <FAQ />
